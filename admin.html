@@ -1,44 +1,307 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <title>لوحة التحكم - سيرة سام</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="admin.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>لوحة تحكم — سيرة سام</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+<link rel="stylesheet" href="admin.css">
 </head>
 <body>
-    <div id="topbar">
-        <div class="tb-logo">SAM.AK <span>Admin</span></div>
-        <div class="tb-actions">
-            <span class="save-status" id="save-status">جاهز للحفظ</span>
-            <button class="tb-btn tb-preview" onclick="window.open('index.html','_blank')">👁 معاينة</button>
-            <button class="tb-btn tb-save" id="btn-save">💾 حفظ التغييرات</button>
-        </div>
+
+<div id="topbar">
+  <div class="tb-logo">SAM.AK <span>لوحة التحكم / Admin</span></div>
+  <div class="tb-actions">
+    <span class="save-status" id="save-status">لم يُحفظ بعد</span>
+    <button class="tb-btn tb-reset" id="btn-reset"><i class='bx bx-reset'></i> إعادة تعيين</button>
+    <button class="tb-btn tb-preview" id="btn-preview" onclick="window.open('index.html','_blank')"><i class='bx bx-show'></i> معاينة</button>
+    <button class="tb-btn tb-save" id="btn-save"><i class='bx bx-save'></i> حفظ التغييرات</button>
+  </div>
+</div>
+
+<div id="workspace">
+
+<aside id="sidebar">
+  <div class="sb-section">
+    <div class="sb-section-label">المحتوى العربي</div>
+    <div class="sb-item active" data-panel="ar-hero"><i class='bx bx-layout sb-icon'></i><span>الهيرو</span></div>
+    <div class="sb-item" data-panel="ar-about"><i class='bx bx-user sb-icon'></i><span>عني</span></div>
+    <div class="sb-item" data-panel="ar-exp"><i class='bx bx-briefcase sb-icon'></i><span>الخبرات</span></div>
+    <div class="sb-item" data-panel="ar-skills"><i class='bx bx-bolt-circle sb-icon'></i><span>المهارات</span></div>
+    <div class="sb-item" data-panel="ar-edu"><i class='bx bxs-graduation sb-icon'></i><span>التعليم</span></div>
+    <div class="sb-item" data-panel="ar-contact"><i class='bx bx-phone sb-icon'></i><span>التواصل</span></div>
+  </div>
+  <div class="sb-section">
+    <div class="sb-section-label">English Content</div>
+    <div class="sb-item" data-panel="en-hero"><i class='bx bx-layout sb-icon'></i><span>Hero</span></div>
+    <div class="sb-item" data-panel="en-about"><i class='bx bx-user sb-icon'></i><span>About</span></div>
+    <div class="sb-item" data-panel="en-exp"><i class='bx bx-briefcase sb-icon'></i><span>Experience</span></div>
+    <div class="sb-item" data-panel="en-skills"><i class='bx bx-bolt-circle sb-icon'></i><span>Skills</span></div>
+    <div class="sb-item" data-panel="en-edu"><i class='bx bxs-graduation sb-icon'></i><span>Education</span></div>
+    <div class="sb-item" data-panel="en-contact"><i class='bx bx-phone sb-icon'></i><span>Contact</span></div>
+  </div>
+  <div class="sb-section">
+    <div class="sb-section-label">الإعدادات</div>
+    <div class="sb-item" data-panel="colors"><i class='bx bx-palette sb-icon'></i><span>الألوان</span></div>
+    <div class="sb-item" data-panel="sections"><i class='bx bx-layer sb-icon'></i><span>الأقسام</span></div>
+  </div>
+</aside>
+
+<main id="main">
+
+<div class="panel active" id="panel-ar-hero">
+  <div class="panel-title"><i class='bx bx-layout'></i> الهيرو — النص العربي</div>
+  <div class="panel-sub">قسم الصفحة الرئيسي الأول اللي يشوفه الزائر</div>
+  <div class="card">
+    <div class="card-title">معلومات الهوية</div>
+    <div class="f-grid">
+      <div class="f-grid f-grid-2">
+        <div class="f-group"><label class="f-label">الاسم — السطر الأول</label><input class="f-input" id="ar-name1" value="سام اسكندر"></div>
+        <div class="f-group"><label class="f-label">الاسم — السطر الثاني (ذهبي)</label><input class="f-input" id="ar-name2" value="الكاهلي"></div>
+      </div>
+      <div class="f-group"><label class="f-label">البادج (الشريط الصغير فوق الاسم)</label><input class="f-input" id="ar-badge" value="✦ مطور حلول تقنية & مدير عمليات المتاجر ✦"></div>
+      <div class="f-group"><label class="f-label">مقدمة التايبنج ("متخصص في ...")</label><input class="f-input" id="ar-subPrefix" value="متخصص في "></div>
+      <div class="f-group">
+        <label class="f-label">كلمات التايبنج (كل سطر = كلمة)</label>
+        <textarea class="f-textarea" id="ar-typing" style="min-height:120px">تطوير الويب (Full-Stack)
+الربط البرمجي السلس (سلة)
+إدارة المتاجر الإلكترونية
+تحليل البيانات
+برمجة مكائن الليزر (EZCAD2)</textarea>
+        <div class="typing-help"><i class='bx bx-bulb'></i> كل سطر منفصل = كلمة أو جملة تظهر في التايبنج</div>
+      </div>
+      <div class="f-group"><label class="f-label">الوصف (الفقرة تحت الاسم)</label><textarea class="f-textarea" id="ar-desc">أطوع البرمجة والتقنية لخدمة الأعمال والتجارة الإلكترونية. متخصص في بناء المنصات (مثل Postertic) وتنفيذ الربط البرمجي الاحترافي مع منصات مثل "سلة" لضمان تجربة شراء سلسة ومضاعفة المبيعات.</textarea></div>
+      <div class="f-grid f-grid-2">
+        <div class="f-group"><label class="f-label">نص الزر الأول (الذهبي)</label><input class="f-input" id="ar-cta1" value="تواصل معي ✦"></div>
+        <div class="f-group"><label class="f-label">نص الزر الثاني</label><input class="f-input" id="ar-cta2" value="الخبرات المهنية"></div>
+      </div>
+      <div class="f-group"><label class="f-label">نص "اسحب للأسفل"</label><input class="f-input" id="ar-scroll" value="اسحب للأسفل"></div>
+      <div class="f-group"><label class="f-label">الفوتر</label><input class="f-input" id="ar-footer" value="صُمّم بـ ✦ لـ سام اسكندر الكاهلي · جميع الحقوق محفوظة © 2026"></div>
     </div>
-    <div id="workspace">
-        <main id="main">
-            <div class="card">
-                <div class="card-title">تعديل النبذة والهوية (عربي)</div>
-                <div class="f-grid">
-                    <div class="f-group"><label class="f-label">الاسم الأول</label><input class="f-input" id="ar-name1"></div>
-                    <div class="f-group"><label class="f-label">الاسم الأخير (الذهبي)</label><input class="f-input" id="ar-name2"></div>
-                    <div class="f-group"><label class="f-label">المسمى (البادج)</label><input class="f-input" id="ar-badge"></div>
-                    <div class="f-group"><label class="f-label">الوصف تحت الاسم</label><textarea class="f-textarea" id="ar-desc"></textarea></div>
-                    <div class="f-group"><label class="f-label">فقرة عني الأولى</label><textarea class="f-textarea" id="ar-aboutP1"></textarea></div>
-                    <div class="f-group"><label class="f-label">فقرة عني الثانية (الشخصية والهوايات)</label><textarea class="f-textarea" id="ar-aboutP2"></textarea></div>
-                </div>
-            </div>
-            
-            <div class="card">
-                <div class="card-title">تعديل الألوان</div>
-                <div class="f-grid">
-                    <div class="f-group"><label class="f-label">لون الخلفية الداكن</label><input type="color" id="color-bg"></div>
-                    <div class="f-group"><label class="f-label">اللون الذهبي (للنصوص واللمسات)</label><input type="color" id="color-gold"></div>
-                </div>
-            </div>
-            <p style="color: #888; font-size: 0.8rem; margin-top: 1rem;">*ملاحظة: يمكنك توسيع الحقول لإضافة المهارات والخبرات الإنجليزية بتعديل ملف admin.js بنفس النسق.</p>
-        </main>
+  </div>
+</div>
+
+<div class="panel" id="panel-ar-about">
+  <div class="panel-title"><i class='bx bx-user'></i> عني — النص العربي</div>
+  <div class="panel-sub">قسم التعريف بالنفس والإحصائيات</div>
+  <div class="card">
+    <div class="card-title">النصوص</div>
+    <div class="f-grid">
+      <div class="f-group"><label class="f-label">عنوان القسم</label><input class="f-input" id="ar-aboutTitle" value="من أنا؟"></div>
+      <div class="f-group"><label class="f-label">الفقرة الأولى</label><textarea class="f-textarea" id="ar-aboutP1">أنا مطور تقني وشخص اجتماعي ومرح. أستمتع جداً بإيجاد حلول تقنية ذكية للمشاكل المعقدة في التجارة الإلكترونية لتسهيل تجربة العميل.</textarea></div>
+      <div class="f-group"><label class="f-label">الفقرة الثانية</label><textarea class="f-textarea" id="ar-aboutP2">بعيداً عن الأكواد، أوازن حياتي بالالتزام في النادي (كمال أجسام)، ولعب البادل، والسباحة. من مشجعي كرة القدم الشغوفين، وأحب السفر المستمر (الرياض، نجران، جدة)، وتجربة مقاهي القهوة المختصة مع الأصدقاء.</textarea></div>
     </div>
-    <script src="admin.js"></script>
+  </div>
+  <div class="card">
+    <div class="card-title">الإحصائيات الأربع</div>
+    <div class="stats-grid" id="ar-stats-grid"></div>
+  </div>
+</div>
+
+<div class="panel" id="panel-ar-exp">
+  <div class="panel-title"><i class='bx bx-briefcase'></i> الخبرات — النص العربي</div>
+  <div class="panel-sub">المسيرة المهنية — أضف وعدّل واحذف الخبرات</div>
+  <div class="card">
+    <div class="card-title">عنوان القسم</div>
+    <input class="f-input" id="ar-expTitle" value="المسيرة المهنية والمشاريع">
+  </div>
+  <div id="ar-exp-list"></div>
+  <button class="add-btn" id="ar-add-exp"><i class='bx bx-plus'></i> إضافة خبرة جديدة</button>
+</div>
+
+<div class="panel" id="panel-ar-skills">
+  <div class="panel-title"><i class='bx bx-bolt-circle'></i> المهارات — النص العربي</div>
+  <div class="panel-sub">اسم المهارة ، نسبة الإتقان ، المستوى</div>
+  <div class="card">
+    <div class="card-title">عنوان القسم</div>
+    <input class="f-input" id="ar-skTitle" value="الكفاءات التقنية والعملية">
+  </div>
+  <div id="ar-sk-list"></div>
+  <button class="add-btn" id="ar-add-sk"><i class='bx bx-plus'></i> إضافة مهارة</button>
+</div>
+
+<div class="panel" id="panel-ar-edu">
+  <div class="panel-title"><i class='bx bxs-graduation'></i> التعليم — النص العربي</div>
+  <div class="panel-sub">المؤهلات الأكاديمية</div>
+  <div class="card">
+    <div class="card-title">عنوان القسم</div>
+    <input class="f-input" id="ar-eduTitle" value="المسيرة التعليمية">
+  </div>
+  <div id="ar-edu-list"></div>
+  <button class="add-btn" id="ar-add-edu"><i class='bx bx-plus'></i> إضافة شهادة</button>
+</div>
+
+<div class="panel" id="panel-ar-contact">
+  <div class="panel-title"><i class='bx bx-phone'></i> التواصل — النص العربي</div>
+  <div class="panel-sub">بيانات الاتصال</div>
+  <div class="card">
+    <div class="card-title">عنوان القسم</div>
+    <input class="f-input" id="ar-ctTitle" value="تواصل معي">
+  </div>
+  <div class="card">
+    <div class="card-title">معلومات الاتصال</div>
+    <div class="f-grid">
+      <div class="f-grid f-grid-2">
+        <div class="f-group"><label class="f-label">رقم الهاتف</label><input class="f-input" id="ar-phone" value="+966 55 360 7176"></div>
+        <div class="f-group"><label class="f-label">رابط الهاتف (href)</label><input class="f-input" id="ar-phone-href" value="tel:+966553607176"></div>
+      </div>
+      <div class="f-grid f-grid-2">
+        <div class="f-group"><label class="f-label">البريد الإلكتروني</label><input class="f-input" id="ar-email" value="samalkahli@gmail.com"></div>
+        <div class="f-group"><label class="f-label">رابط البريد (href)</label><input class="f-input" id="ar-email-href" value="mailto:samalkahli@gmail.com"></div>
+      </div>
+      <div class="f-group"><label class="f-label">العنوان / الموقع</label><input class="f-input" id="ar-address" value="الديرة، الرياض 12663"></div>
+      <div class="f-group"><label class="f-label">المشاريع / الرابط الإضافي</label><input class="f-input" id="ar-project" value="معرض أعمالي (Postertic)"></div>
+    </div>
+  </div>
+</div>
+
+<div class="panel" id="panel-en-hero">
+  <div class="panel-title"><i class='bx bx-layout'></i> Hero — English Content</div>
+  <div class="panel-sub">Main hero section in English</div>
+  <div class="card">
+    <div class="card-title" style="font-family:'DM Sans',sans-serif">Identity</div>
+    <div class="f-grid" style="font-family:'DM Sans',sans-serif;direction:ltr">
+      <div class="f-grid f-grid-2">
+        <div class="f-group"><label class="f-label">Name Line 1</label><input class="f-input" id="en-name1" value="Sam Iskandar"></div>
+        <div class="f-group"><label class="f-label">Name Line 2 (Gold)</label><input class="f-input" id="en-name2" value="Al-Kahli"></div>
+      </div>
+      <div class="f-group"><label class="f-label">Badge Text</label><input class="f-input" id="en-badge" value="✦ Tech Solutions Developer & E-Commerce Manager ✦"></div>
+      <div class="f-group"><label class="f-label">Typing Prefix</label><input class="f-input" id="en-subPrefix" value="Specializing in "></div>
+      <div class="f-group">
+        <label class="f-label">Typing Words (one per line)</label>
+        <textarea class="f-textarea" id="en-typing" style="min-height:120px">Full-Stack Web Dev
+Seamless API Integrations
+E-Commerce Management
+Data & Behavior Analysis
+Laser Engraving (EZCAD2)</textarea>
+      </div>
+      <div class="f-group"><label class="f-label">Description Paragraph</label><textarea class="f-textarea" id="en-desc">I leverage programming to serve e-commerce. Specializing in building platforms (like Postertic) and executing professional API integrations with platforms like "Salla" to ensure a frictionless shopping experience and boost sales.</textarea></div>
+      <div class="f-grid f-grid-2">
+        <div class="f-group"><label class="f-label">Primary Button Text</label><input class="f-input" id="en-cta1" value="Get In Touch ✦"></div>
+        <div class="f-group"><label class="f-label">Secondary Button Text</label><input class="f-input" id="en-cta2" value="View Experience"></div>
+      </div>
+      <div class="f-group"><label class="f-label">Scroll Label</label><input class="f-input" id="en-scroll" value="Scroll Down"></div>
+      <div class="f-group"><label class="f-label">Footer Text</label><input class="f-input" id="en-footer" value="Crafted with ✦ for Sam Iskandar Al-Kahli · All Rights Reserved © 2026"></div>
+    </div>
+  </div>
+</div>
+
+<div class="panel" id="panel-en-about">
+  <div class="panel-title"><i class='bx bx-user'></i> About — English Content</div>
+  <div class="card" style="direction:ltr;font-family:'DM Sans',sans-serif">
+    <div class="card-title">Texts</div>
+    <div class="f-grid">
+      <div class="f-group"><label class="f-label">Section Title</label><input class="f-input" id="en-aboutTitle" value="Who Am I?"></div>
+      <div class="f-group"><label class="f-label">Paragraph 1</label><textarea class="f-textarea" id="en-aboutP1">I am a tech developer with a sociable and cheerful personality. I thoroughly enjoy finding smart technical solutions to complex e-commerce problems, optimizing store integrations to make users' lives easier.</textarea></div>
+      <div class="f-group"><label class="f-label">Paragraph 2</label><textarea class="f-textarea" id="en-aboutP2">Away from code, I balance my life by staying committed to the gym (bodybuilding), playing Padel, and swimming. I am a passionate soccer fan, love traveling (Riyadh, Najran, Jeddah), and exploring specialty coffee shops.</textarea></div>
+    </div>
+  </div>
+  <div class="card" style="direction:ltr;font-family:'DM Sans',sans-serif">
+    <div class="card-title">Stats (4 boxes)</div>
+    <div class="stats-grid" id="en-stats-grid"></div>
+  </div>
+</div>
+
+<div class="panel" id="panel-en-exp">
+  <div class="panel-title"><i class='bx bx-briefcase'></i> Experience — English Content</div>
+  <div class="card" style="direction:ltr;font-family:'DM Sans',sans-serif">
+    <div class="card-title">Section Title</div>
+    <input class="f-input" id="en-expTitle" value="Experience & Projects">
+  </div>
+  <div id="en-exp-list" style="direction:ltr;font-family:'DM Sans',sans-serif"></div>
+  <button class="add-btn" id="en-add-exp" style="direction:ltr;font-family:'DM Sans',sans-serif"><i class='bx bx-plus'></i> Add Experience</button>
+</div>
+
+<div class="panel" id="panel-en-skills">
+  <div class="panel-title"><i class='bx bx-bolt-circle'></i> Skills — English Content</div>
+  <div class="card" style="direction:ltr;font-family:'DM Sans',sans-serif">
+    <div class="card-title">Section Title</div>
+    <input class="f-input" id="en-skTitle" value="Technical Competencies">
+  </div>
+  <div id="en-sk-list" style="direction:ltr;font-family:'DM Sans',sans-serif"></div>
+  <button class="add-btn" id="en-add-sk" style="direction:ltr;font-family:'DM Sans',sans-serif"><i class='bx bx-plus'></i> Add Skill</button>
+</div>
+
+<div class="panel" id="panel-en-edu">
+  <div class="panel-title"><i class='bx bxs-graduation'></i> Education — English Content</div>
+  <div class="card" style="direction:ltr;font-family:'DM Sans',sans-serif">
+    <div class="card-title">Section Title</div>
+    <input class="f-input" id="en-eduTitle" value="Academic Background">
+  </div>
+  <div id="en-edu-list" style="direction:ltr;font-family:'DM Sans',sans-serif"></div>
+  <button class="add-btn" id="en-add-edu" style="direction:ltr;font-family:'DM Sans',sans-serif"><i class='bx bx-plus'></i> Add Education</button>
+</div>
+
+<div class="panel" id="panel-en-contact">
+  <div class="panel-title"><i class='bx bx-phone'></i> Contact — English Content</div>
+  <div class="card" style="direction:ltr;font-family:'DM Sans',sans-serif">
+    <div class="card-title">Section Title</div>
+    <input class="f-input" id="en-ctTitle" value="Get In Touch">
+  </div>
+  <div class="card" style="direction:ltr;font-family:'DM Sans',sans-serif">
+    <div class="card-title">Contact Info Labels</div>
+    <div class="f-grid">
+      <div class="f-grid f-grid-2">
+        <div class="f-group"><label class="f-label">Phone Label</label><input class="f-input" id="en-phoneLbl" value="Phone"></div>
+        <div class="f-group"><label class="f-label">Email Label</label><input class="f-input" id="en-emailLbl" value="Email"></div>
+      </div>
+      <div class="f-grid f-grid-2">
+        <div class="f-group"><label class="f-label">Location Label</label><input class="f-input" id="en-addrLbl" value="Location"></div>
+        <div class="f-group"><label class="f-label">Location Value</label><input class="f-input" id="en-addrVal" value="Al-Dirah, Riyadh 12663"></div>
+      </div>
+      <div class="f-grid f-grid-2">
+        <div class="f-group"><label class="f-label">Projects Label</label><input class="f-input" id="en-projLbl" value="Projects"></div>
+        <div class="f-group"><label class="f-label">Projects Value</label><input class="f-input" id="en-projVal" value="My Gallery (Postertic)"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="panel" id="panel-colors">
+  <div class="panel-title"><i class='bx bx-palette'></i> الألوان والثيم</div>
+  <div class="panel-sub">غيّر ألوان الصفحة بالكامل — التغيير يُطبّق فورياً عند الحفظ</div>
+  <div class="card">
+    <div class="color-section">
+      <div class="color-section-title">ثيمات جاهزة / Quick Presets</div>
+      <div class="presets-row">
+        <div class="preset-label">اضغط لتطبيق ثيم كامل</div>
+        <div class="preset" style="background:#C9A84C" title="Gold Classic" data-p='{"gold":"#C9A84C","goldL":"#E8C97A","bg":"#080808","bg2":"#0e0e0e","tx":"#e8e0d0","tx2":"#8a8070"}'></div>
+        <div class="preset" style="background:#60a5fa" title="Blue Steel" data-p='{"gold":"#60a5fa","goldL":"#93c5fd","bg":"#060b14","bg2":"#0b1221","tx":"#d0e4f7","tx2":"#607080"}'></div>
+        <div class="preset" style="background:#a78bfa" title="Purple Haze" data-p='{"gold":"#a78bfa","goldL":"#c4b5fd","bg":"#08060f","bg2":"#0e0c18","tx":"#e0d8f5","tx2":"#7060a0"}'></div>
+        <div class="preset" style="background:#34d399" title="Emerald" data-p='{"gold":"#34d399","goldL":"#6ee7b7","bg":"#060e0b","bg2":"#0b1610","tx":"#d0f0e4","tx2":"#406858"}'></div>
+        <div class="preset" style="background:#f87171" title="Rose Red" data-p='{"gold":"#f87171","goldL":"#fca5a5","bg":"#0f0808","bg2":"#180c0c","tx":"#f5d0d0","tx2":"#906060"}'></div>
+        <div class="preset" style="background:#e2e8f0" title="Platinum" data-p='{"gold":"#e2e8f0","goldL":"#f8fafc","bg":"#08080a","bg2":"#0d0d10","tx":"#e8e8f0","tx2":"#707080"}'></div>
+        <div class="preset" style="background:#fb923c" title="Amber" data-p='{"gold":"#fb923c","goldL":"#fdba74","bg":"#0d0804","bg2":"#150d06","tx":"#f5e0d0","tx2":"#906040"}'></div>
+      </div>
+    </div>
+    <div class="adm-div"></div>
+    <div class="color-section">
+      <div class="color-section-title">تخصيص يدوي / Custom Colors</div>
+      <div class="color-grid-ui" id="color-pickers"></div>
+    </div>
+  </div>
+</div>
+
+<div class="panel" id="panel-sections">
+  <div class="panel-title"><i class='bx bx-layer'></i> إظهار / إخفاء الأقسام</div>
+  <div class="panel-sub">التحكم في أي أقسام تظهر في الصفحة العامة</div>
+  <div class="card">
+    <div class="card-title">الأقسام</div>
+    <div id="sections-list">
+      <div class="sec-row"><div class="sec-row-info"><div class="sec-row-name">قسم — عني / About</div><div class="sec-row-desc">التعريف والإحصائيات</div></div><label class="toggle"><input type="checkbox" data-sec="about" checked><div class="toggle-track"></div></label></div>
+      <div class="sec-row"><div class="sec-row-info"><div class="sec-row-name">قسم — الخبرات / Experience</div><div class="sec-row-desc">المسيرة المهنية</div></div><label class="toggle"><input type="checkbox" data-sec="experience" checked><div class="toggle-track"></div></label></div>
+      <div class="sec-row"><div class="sec-row-info"><div class="sec-row-name">قسم — المهارات / Skills</div><div class="sec-row-desc">شرائط الكفاءات</div></div><label class="toggle"><input type="checkbox" data-sec="skills" checked><div class="toggle-track"></div></label></div>
+      <div class="sec-row"><div class="sec-row-info"><div class="sec-row-name">قسم — التعليم / Education</div><div class="sec-row-desc">المؤهلات الأكاديمية</div></div><label class="toggle"><input type="checkbox" data-sec="education" checked><div class="toggle-track"></div></label></div>
+      <div class="sec-row"><div class="sec-row-info"><div class="sec-row-name">قسم — اللغات / Languages</div><div class="sec-row-desc">العربية والإنجليزية</div></div><label class="toggle"><input type="checkbox" data-sec="languages" checked><div class="toggle-track"></div></label></div>
+      <div class="sec-row"><div class="sec-row-info"><div class="sec-row-name">قسم — التواصل / Contact</div><div class="sec-row-desc">بيانات الاتصال</div></div><label class="toggle"><input type="checkbox" data-sec="contact" checked><div class="toggle-track"></div></label></div>
+    </div>
+  </div>
+  <div class="note"><i class='bx bx-info-circle'></i> لا يلزمك الحفظ لتطبيق التبديل — يُطبّق فوراً عند فتح صفحة index.html</div>
+</div>
+
+</main></div><div id="toast"></div>
+
+<script src="admin.js"></script>
 </body>
 </html>
