@@ -239,20 +239,7 @@ function type(){
 }
 function restartTyping(){ clearTimeout(tTimer);tWi=0;tCi=0;tDel=false;const el=getTyped();if(el)el.textContent='';tTimer=setTimeout(type,600); }
 
-const cDot=document.getElementById('cur-dot'), cRing=document.getElementById('cur-ring');
-let mx=innerWidth/2,my=innerHeight/2,rx=mx,ry=my;
-document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY});
-(function animC(){
-  rx+=.12*(mx-rx); ry+=.12*(my-ry);
-  cDot.style.left=mx+'px'; cDot.style.top=my+'px';
-  cRing.style.left=rx+'px'; cRing.style.top=ry+'px';
-  requestAnimationFrame(animC);
-})();
-document.addEventListener('mouseover',e=>{
-  if(e.target.closest('a,button,.stat-c,.sk-item,.edu-c,.ct-c,.lng-c,.preset-dot')){
-    cRing.style.width='56px';cRing.style.height='56px';
-  } else {cRing.style.width='38px';cRing.style.height='38px';}
-});
+
 
 const cv=document.getElementById('stars'), cx=cv.getContext('2d');
 let stars=[],W,H;
