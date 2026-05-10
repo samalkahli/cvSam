@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>سام اسكندر الكاهلي — Sam Iskandar Al-Kahli</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Tajawal:wght@300;400;700;900&family=Cormorant+Garamond:wght@300;400;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body lang="ar">
+
+<div id="cur"><div id="cur-ring"></div><div id="cur-dot"></div></div>
+<canvas id="stars"></canvas>
+
+<div id="color-panel">
+  <button id="color-trigger" title="Color Settings">🎨</button>
+  <div id="color-box">
+    <div class="cp-title">🎨 ضبط الألوان / Colors</div>
+
+    <div class="cp-row">
+      <span class="cp-label">الذهبي / Gold</span>
+      <div class="cp-right">
+        <div class="cp-swatch" id="sw-gold" onclick="document.getElementById('cp-gold').click()"></div>
+        <input type="color" id="cp-gold" value="#C9A84C">
+        <input class="cp-hex" id="ch-gold" value="#C9A84C" maxlength="7">
+      </div>
+    </div>
+
+    <div class="cp-row">
+      <span class="cp-label">الذهبي الفاتح / Light</span>
+      <div class="cp-right">
+        <div class="cp-swatch" id="sw-gold-l" onclick="document.getElementById('cp-gold-l').click()"></div>
+        <input type="color" id="cp-gold-l" value="#E8C97A">
+        <input class="cp-hex" id="ch-gold-l" value="#E8C97A" maxlength="7">
+      </div>
+    </div>
+
+    <div class="cp-row">
+      <span class="cp-label">الخلفية / Background</span>
+      <div class="cp-right">
+        <div class="cp-swatch" id="sw-bg" onclick="document.getElementById('cp-bg').click()"></div>
+        <input type="color" id="cp-bg" value="#080808">
+        <input class="cp-hex" id="ch-bg" value="#080808" maxlength="7">
+      </div>
+    </div>
+
+    <div class="cp-row">
+      <span class="cp-label">الخلفية 2 / BG2</span>
+      <div class="cp-right">
+        <div class="cp-swatch" id="sw-bg2" onclick="document.getElementById('cp-bg2').click()"></div>
+        <input type="color" id="cp-bg2" value="#0e0e0e">
+        <input class="cp-hex" id="ch-bg2" value="#0e0e0e" maxlength="7">
+      </div>
+    </div>
+
+    <div class="cp-row">
+      <span class="cp-label">النص / Text</span>
+      <div class="cp-right">
+        <div class="cp-swatch" id="sw-tx" onclick="document.getElementById('cp-tx').click()"></div>
+        <input type="color" id="cp-tx" value="#e8e0d0">
+        <input class="cp-hex" id="ch-tx" value="#e8e0d0" maxlength="7">
+      </div>
+    </div>
+
+    <div class="cp-row">
+      <span class="cp-label">نص ثانوي / Dim</span>
+      <div class="cp-right">
+        <div class="cp-swatch" id="sw-tx2" onclick="document.getElementById('cp-tx2').click()"></div>
+        <input type="color" id="cp-tx2" value="#8a8070">
+        <input class="cp-hex" id="ch-tx2" value="#8a8070" maxlength="7">
+      </div>
+    </div>
+
+    <button class="cp-apply" id="cp-apply-btn">✦ حفظ / Save</button>
+
+    <div class="cp-presets">
+      <div class="cp-pre-label">ثيمات جاهزة / Presets</div>
+      <div class="preset-dot" style="background:#C9A84C" title="Gold Classic" data-preset='{"gold":"#C9A84C","gold-l":"#E8C97A","bg":"#080808","bg2":"#0e0e0e","tx":"#e8e0d0","tx2":"#8a8070"}'></div>
+      <div class="preset-dot" style="background:#60a5fa" title="Blue Steel" data-preset='{"gold":"#60a5fa","gold-l":"#93c5fd","bg":"#060b14","bg2":"#0b1221","tx":"#d0e4f7","tx2":"#607080"}'></div>
+      <div class="preset-dot" style="background:#a78bfa" title="Purple Haze" data-preset='{"gold":"#a78bfa","gold-l":"#c4b5fd","bg":"#08060f","bg2":"#0e0c18","tx":"#e0d8f5","tx2":"#7060a0"}'></div>
+      <div class="preset-dot" style="background:#34d399" title="Emerald" data-preset='{"gold":"#34d399","gold-l":"#6ee7b7","bg":"#060e0b","bg2":"#0b1610","tx":"#d0f0e4","tx2":"#406858"}'></div>
+      <div class="preset-dot" style="background:#f87171" title="Rose" data-preset='{"gold":"#f87171","gold-l":"#fca5a5","bg":"#0f0808","bg2":"#180c0c","tx":"#f5d0d0","tx2":"#906060"}'></div>
+      <div class="preset-dot" style="background:#e2e8f0" title="Platinum" data-preset='{"gold":"#e2e8f0","gold-l":"#f8fafc","bg":"#08080a","bg2":"#0d0d10","tx":"#e8e8f0","tx2":"#707080"}'></div>
+    </div>
+  </div>
+</div>
+
+<nav id="navbar">
+  <div class="nav-logo">SAM.AK</div>
+  <div class="nav-right">
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#about" data-ar="عني" data-en="About">عني</a></li>
+      <li><a href="#experience" data-ar="الخبرات" data-en="Experience">الخبرات</a></li>
+      <li><a href="#skills" data-ar="المهارات" data-en="Skills">المهارات</a></li>
+      <li><a href="#education" data-ar="التعليم" data-en="Education">التعليم</a></li>
+      <li><a href="#contact" data-ar="التواصل" data-en="Contact">التواصل</a></li>
+    </ul>
+    <button class="lang-btn" id="lang-toggle">
+      <span class="lang-flag">🌐</span>
+      <span class="lang-active" id="lbl-ar">ع</span>
+      <span class="lang-divider">|</span>
+      <span class="lang-inactive" id="lbl-en">EN</span>
+    </button>
+  </div>
+</nav>
+
+<section id="hero">
+  <div class="hero-inner lang-fade">
+    <div class="hero-badge" id="pg-badge"></div>
+    <h1 class="hero-name">
+      <span id="pg-name1"></span><br>
+      <span class="gold" id="pg-name2"></span>
+    </h1>
+    <p class="hero-sub" id="pg-sub"><span id="typed-prefix"></span><span id="typed"></span><span class="blink">|</span></p>
+    <p class="hero-desc" id="pg-desc"></p>
+    <div class="hero-cta">
+      <a href="#contact" class="btn btn-p" id="pg-cta1"></a>
+      <a href="#experience" class="btn btn-o" id="pg-cta2"></a>
+    </div>
+  </div>
+  <div class="hero-scroll"><div class="scroll-line"></div><span id="pg-scroll"></span></div>
+</section>
+
+<section id="about">
+  <div class="container">
+    <div class="sec-label"><span class="sec-num" id="lbl-about"></span><div class="sec-label-line"></div></div>
+    <div class="about-grid">
+      <div class="about-text reveal lang-fade">
+        <h2 class="sec-title" id="pg-about-title"></h2>
+        <p id="pg-about-p1"></p>
+        <p id="pg-about-p2"></p>
+      </div>
+      <div class="about-stats reveal" id="pg-stats"></div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="container">
+    <div class="sec-label"><span class="sec-num" id="lbl-exp"></span><div class="sec-label-line"></div></div>
+    <h2 class="sec-title lang-fade" id="pg-exp-title"></h2>
+    <div class="timeline lang-fade" id="pg-exp"></div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="container">
+    <div class="sec-label"><span class="sec-num" id="lbl-sk"></span><div class="sec-label-line"></div></div>
+    <h2 class="sec-title lang-fade" id="pg-sk-title"></h2>
+    <div class="sk-grid lang-fade" id="pg-skills"></div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="container">
+    <div class="sec-label"><span class="sec-num" id="lbl-edu"></span><div class="sec-label-line"></div></div>
+    <h2 class="sec-title lang-fade" id="pg-edu-title"></h2>
+    <div class="lang-fade" id="pg-edu"></div>
+  </div>
+</section>
+
+<section id="languages">
+  <div class="container">
+    <div class="sec-label"><span class="sec-num" id="lbl-lng"></span><div class="sec-label-line"></div></div>
+    <h2 class="sec-title lang-fade" id="pg-lng-title"></h2>
+    <div class="lng-grid lang-fade">
+      <div class="lng-c reveal">
+        <div class="lng-name" id="lng-ar-name"></div>
+        <div class="lng-lv" id="lng-ar-lv"></div>
+        <div class="lng-dots"><div class="lng-dot on"></div><div class="lng-dot on"></div><div class="lng-dot on"></div><div class="lng-dot on"></div><div class="lng-dot on"></div></div>
+      </div>
+      <div class="lng-c reveal">
+        <div class="lng-name">English</div>
+        <div class="lng-lv" id="lng-en-lv"></div>
+        <div class="lng-dots"><div class="lng-dot on"></div><div class="lng-dot on"></div><div class="lng-dot on"></div><div class="lng-dot on"></div><div class="lng-dot"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container">
+    <div class="sec-label"><span class="sec-num" id="lbl-ct"></span><div class="sec-label-line"></div></div>
+    <h2 class="sec-title lang-fade" id="pg-ct-title"></h2>
+    <div class="ct-grid lang-fade" id="pg-contact"></div>
+  </div>
+</section>
+
+<footer><p class="lang-fade" id="pg-footer"></p></footer>
+
+<script src="script.js"></script>
+</body>
+</html>
