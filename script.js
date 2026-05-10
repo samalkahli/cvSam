@@ -295,3 +295,108 @@ window.addEventListener('storage', (e) => {
     renderPage(LANG, true);
   }
 });
+document.getElementById('btn-ats-download').addEventListener('click', function() {
+    const savedState = JSON.parse(localStorage.getItem('sam_cv_v2'));
+    const DATA_ALL = savedState ? savedState : DEFAULTS;
+    const D = DATA_ALL[LANG];
+    const isAr = LANG === 'ar';
+
+    const printWindow = window.open('', '_blank');
+    
+    const htmlContent = `
+        <!DOCTYPE html>
+        <html lang="${LANG}" dir="${isAr ? 'rtl' : 'ltr'}">
+        <head>
+            <meta charset="UTF-8">
+            <title>${D.name1} ${D.name2} - ATS CV</title>
+            <style>
+                body { font-family: 'Arial', sans-serif; padding: 30px; color: #000; line-height: 1.6; max-width: 850px; margin: 0 auto; }
+                h1 { font-size: 28pt; margin-bottom: 5px; text-align: center; text-transform: uppercase; }
+                .contact-info { font-size: 11pt; margin-bottom: 20px; text-align: center; border-bottom: 2px solid #000; padding-bottom: 15px; }
+                h2 { font-size: 16pt; text-transform: uppercase; margin-top: 25px; border-bottom: 1px solid #000; padding-bottom: 5px; background: #f2f2f2; padding-left: 5px; padding-right: 5px; }
+                .section-content { padding: 0 5px; }
+                .item-header { display: flex; justify-content: space-between; font-weight: bold; margin-top: 15px; font-size: 12pt; }
+                .sub-header { font-style: italic; color: #333; margin-bottom: 5px; font-size: 11pt; }
+                ul { margin-top: 5px; padding-inline-start: 20px; }
+                li { margin-bottom: 5px; font-size: 11pt; }
+                .stats-box { margin: 15px 0; padding: 10px; border: 1px dashed #666; display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+                .stat-item { font-size: 10pt; }
+                .stat-item strong { color: #000; }
+                p { font-size: 11pt; margin: 10px 0; }
+                @media print { @page { margin: 1.5cm; } body { padding: 0; } }
+            </style>
+        </head>
+        <body>
+            <h1>${D.name1} ${D.name2}</h1>
+            <div class="contact-info">
+                ${D.badge}<br>
+                ${isAr ? 'الموقع' : 'Location'}: ${isAr ? D.address : D.addrVal} | 
+                ${isAr ? 'الهاتف' : 'Phone'}: ${isAr ? D.phone : DATA_ALL.ar.phone} | 
+                ${isAr ? 'البريد' : 'Email'}: ${isAr ? D.email : DATA_ALL.ar.email}<br>
+                ${isAr ? 'المشاريع' : 'Portfolio'}: https://gallery.postertic.com/
+            </div>
+            
+            <h2>${D.aboutTitle}</h2>
+            <div class="section-content">
+                <p>${D.aboutP1}</p>
+                <p>${D.aboutP2}</p>
+            </div>
+
+            ${D.stats ? `
+            <h2>${isAr ? 'إحصائيات سريعة' : 'Key Statistics'}</h2>
+            <div class="stats-box">
+                ${D.stats.map(s => `<div class="stat-item"><strong>${s.n}:</strong> ${s.l}</div>`).join('')}
+            </div>` : ''}
+
+            <h2>${D.expTitle}</h2>
+            <div class="section-content">
+                ${D.experience.map(e => `
+                    <div class="item-header">
+                        <span>${e.role}</span>
+                        <span>${e.period}</span>
+                    </div>
+                    <div class="sub-header">${e.company}</div>
+                    <ul>
+                        ${e.points.map(p => `<li>${p.replace(/<\/?[^>]+(>|$)/g, "")}</li>`).join('')}
+                    </ul>
+                `).join('')}
+            </div>
+
+            <h2>${D.skTitle}</h2>
+            <div class="section-content">
+                <p><strong>${isAr ? 'الخبرات التقنية والعملية' : 'Technical & Practical Expertise'}:</strong></p>
+                <p>${D.skills.map(s => `${s.n} (${s.l})`).join(' • ')}</p>
+            </div>
+
+            <h2>${D.eduTitle}</h2>
+            <div class="section-content">
+                ${D.education.map(e => `
+                    <div class="item-header">
+                        <span>${e.deg}</span>
+                        <span>${e.period}</span>
+                    </div>
+                    <div class="sub-header">${e.field} | ${e.loc}</div>
+                `).join('')}
+            </div>
+
+            <h2>${isAr ? 'اللغات' : 'Languages'}</h2>
+            <div class="section-content">
+                <p>${isAr ? 'العربية: لغة أم' : 'Arabic: Native'} • ${isAr ? 'الإنجليزية: B2 - متوسط متقدم' : 'English: B2 - Upper Intermediate'}</p>
+            </div>
+
+            <footer style="margin-top: 30px; font-size: 9pt; text-align: center; color: #888; border-top: 1px solid #eee; padding-top: 10px;">
+                ${D.footer.replace(/<\/?[^>]+(>|$)/g, "")}
+            </footer>
+        </body>
+        </html>
+    `;
+
+    printWindow.document.write(htmlContent);
+    printWindow.document.close();
+    printWindow.focus();
+    
+    setTimeout(() => {
+        printWindow.print();
+        printWindow.close();
+    }, 500);
+});
