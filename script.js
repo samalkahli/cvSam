@@ -1,75 +1,75 @@
-// البيانات الافتراضية في حال لم تقم بالحفظ من لوحة التحكم بعد
 const DEFAULTS = {
   ar: {
+    profilePic:'',
     badge: '✦ مطور حلول تقنية & مدير عمليات المتاجر ✦',
     name1: 'سام اسكندر', name2: 'الكاهلي',
     subPrefix: 'متخصص في ',
-    typing: ['تطوير الويب (Full-Stack)','الربط البرمجي السلس (سلة)','إدارة المتاجر الإلكترونية','تحليل البيانات وسلوك العملاء','برمجة مكائن الليزر (EZCAD2)'],
-    desc: 'أطوع البرمجة والتقنية لخدمة الأعمال والتجارة الإلكترونية. متخصص في بناء المنصات (مثل Postertic) وتنفيذ الربط البرمجي الاحترافي مع منصات مثل "سلة" لضمان تجربة شراء سلسة ومضاعفة المبيعات.',
-    cta1: 'تواصل معي ✦', cta2: 'الخبرات المهنية',
+    typing: ['تطوير الويب (Full-Stack)','الربط البرمجي السلس (سلة)','إدارة المتاجر الإلكترونية','تحليل البيانات','برمجة مكائن الليزر'],
+    desc: 'أطوع البرمجة والتقنية لخدمة الأعمال والتجارة الإلكترونية. متخصص في بناء المنصات (مثل Postertic) وتنفيذ الربط البرمجي الاحترافي مع منصات مثل "سلة".',
+    cta1: 'تواصل معي ✦', cta2: 'المشاريع والخبرات',
     scroll: 'اسحب للأسفل',
     aboutTitle: 'من أنا؟',
-    aboutP1: 'أنا مطور تقني وشخص اجتماعي ومرح. أستمتع جداً بإيجاد حلول تقنية ذكية للمشاكل المعقدة في التجارة الإلكترونية، مثل برمجة أدوات مخصصة أو تحسين ربط المتاجر لتسهيل تجربة العميل.',
-    aboutP2: 'بعيداً عن الأكواد، أوازن حياتي بالالتزام في النادي (كمال أجسام)، ولعب البادل، والسباحة. من مشجعي كرة القدم الشغوفين، وأحب السفر المستمر (الرياض، نجران، جدة)، وتجربة مقاهي القهوة المختصة مع الأصدقاء.',
+    aboutP1: 'أنا مطور تقني وشخص اجتماعي ومرح. أستمتع جداً بإيجاد حلول تقنية ذكية للمشاكل المعقدة في التجارة الإلكترونية.',
+    aboutP2: 'بعيداً عن الأكواد، أوازن حياتي بالالتزام في النادي (كمال أجسام)، ولعب البادل، والسباحة.',
     stats: [{n:'+3',l:'سنوات خبرة'},{n:'Expert',l:'إدارة متاجر سلة'},{n:'100%',l:'ربط برمجي بدون ثغرات'},{n:'Full-Stack',l:'تطوير الويب'}],
-    expTitle: 'المسيرة المهنية والمشاريع',
+    pjTitle: 'مشاريع مختارة',
+    projects: [
+      {title:'منصة Postertic',desc:'معرض خارجي متكامل لبيع اللوحات الكلاسيكية مع ربط مباشر بمنصة سلة.',features:'ربط برمجي سلس وسريع\nنظام تصنيف متقدم\nاستقرار كامل',link:'https://postertic.com',images:[]}
+    ],
+    expTitle: 'المسيرة المهنية',
     experience: [
-      { period:'مشروع مستمر', role:'المؤسس والمطور الرئيسي', company:'Postertic Brand', points:['تأسيس وبناء معرض خارجي مستقل للعلامة التجارية باستخدام تقنيات الويب الحديثة (Python, Flask, Firebase).','تنفيذ ربط برمجي سلس، سريع، وآمن جداً مع منصة "سلة" لنقل البيانات.','ضمان استقرار الربط بدون أي ثغرات أو تعليق (Zero Downtime)، مما ضاعف المبيعات.','تصميم الهوية البصرية والمنتجات (مطبوعات ماتيه كلاسيكية) باستخدام فوتوشوب.'] },
-      { period:'يناير 2026 — الآن', role:'المدير العام (General Manager)', company:'متجر سوتار الإلكتروني (Soutar)', points:['إدارة العمليات التشغيلية والإدارية للمتجر على منصة سلة، مع التركيز على نمو المبيعات وتحليل البيانات.'] },
-      { period:'يناير 2023 — الآن', role:'مطور تقني ومصمم جرافيكس', company:'قصر ميان للتجارة، الرياض', points:['تطوير حلول برمجية ساهمت في تحسين أداء الأنظمة ورفع جودة تفاعل المستخدم.','تصميم أعمال جرافيكية جذابة عزّزت هوية العلامة التجارية وزادت من تفاعل العملاء.'] }
+      { period:'مشروع مستمر', role:'المؤسس والمطور الرئيسي', company:'Postertic Brand', points:['تأسيس وبناء معرض خارجي مستقل.','تنفيذ ربط برمجي سلس.'] }
     ],
     skTitle: 'الكفاءات التقنية والعملية',
     skills: [
-      {n:'الربط البرمجي السلس مع سلة',p:98,l:'Expert'},{n:'تطوير الويب (HTML, CSS, JS)',p:90,l:'Expert'},{n:'إدارة المتاجر (سلة)',p:95,l:'Expert'},{n:'Python & Flask',p:85,l:'Advanced'},{n:'Firebase & Firestore',p:80,l:'Advanced'},{n:'UI/UX & Photoshop',p:85,l:'Advanced'},{n:'تحليل البيانات وسلوك العملاء',p:88,l:'Advanced'},{n:'صيانة الهاردوير وترقية الـ PC',p:80,l:'Advanced'},{n:'برمجة مكائن الليزر (EZCAD2)',p:75,l:'Intermediate'}
+      {n:'الربط البرمجي (سلة)',p:98,l:'Expert'},{n:'تطوير الويب (HTML, CSS, JS)',p:90,l:'Expert'},{n:'إدارة المتاجر (سلة)',p:95,l:'Expert'}
     ],
     eduTitle: 'المسيرة التعليمية',
-    education: [{ico:'🎓',deg:'جامعة تونتك الماليزية',field:'بكالوريوس هندسة برمجيات',period:'فبراير 2019 — يونيو 2022',loc:'📍 صنعاء، اليمن'}],
+    education: [{ico:'🎓',deg:'جامعة تونتك الماليزية',field:'هندسة برمجيات',period:'2019 — 2022',loc:'📍 صنعاء، اليمن'}],
     ctTitle: 'تواصل معي',
     phone: '+966 55 360 7176', phoneHref: 'tel:+966553607176',
     email: 'samalkahli@gmail.com', emailHref: 'mailto:samalkahli@gmail.com',
-    address: 'الديرة، الرياض 12663', project: 'معرض أعمالي (Postertic)',
+    address: 'الديرة، الرياض', project: 'معرض أعمالي (Postertic)',
     footer: 'صُمّم بـ <span class="g">✦</span> لـ <span class="g">سام اسكندر الكاهلي</span> · جميع الحقوق محفوظة © 2026'
   },
   en: {
-    badge: '✦ Tech Solutions Developer & E-Commerce Manager ✦',
+    profilePic:'',
+    badge: '✦ Tech Solutions Developer ✦',
     name1: 'Sam Iskandar', name2: 'Al-Kahli',
     subPrefix: 'Specializing in ',
-    typing: ['Full-Stack Web Dev','Seamless API Integrations','E-Commerce Management','Data & Behavior Analysis','Laser Engraving (EZCAD2)'],
-    desc: 'I leverage programming to serve e-commerce. Specializing in building platforms (like Postertic) and executing professional API integrations with platforms like "Salla" to ensure a frictionless shopping experience and boost sales.',
-    cta1: 'Get In Touch ✦', cta2: 'View Experience',
+    typing: ['Full-Stack Web Dev','API Integrations'],
+    desc: 'I leverage programming to serve e-commerce.',
+    cta1: 'Get In Touch ✦', cta2: 'Projects & Experience',
     scroll: 'Scroll Down',
     aboutTitle: 'Who Am I?',
-    aboutP1: 'I am a tech developer with a sociable and cheerful personality. I thoroughly enjoy finding smart technical solutions to complex e-commerce problems, optimizing store integrations to make users\' lives easier.',
-    aboutP2: 'Away from code, I balance my life by staying committed to the gym (bodybuilding), playing Padel, and swimming. I am a passionate soccer fan, love traveling (Riyadh, Najran, Jeddah), and exploring specialty coffee shops.',
-    stats: [{n:'+3',l:'Years Experience'},{n:'Expert',l:'Salla E-Commerce'},{n:'100%',l:'Bug-free Integrations'},{n:'Full-Stack',l:'Web Dev'}],
-    expTitle: 'Experience & Projects',
-    experience: [
-      { period:'Ongoing Project', role:'Founder & Lead Developer', company:'Postertic Brand', points:['Built an independent external gallery for the brand using modern web tech (Python, Flask, Firebase).','Executed a seamless, lightning-fast, and secure API integration with the "Salla" platform.','Ensured high stability with zero bugs or downtime, significantly boosting sales.','Designed visual identity and products (classic matte designs) using Photoshop.'] },
-      { period:'Jan 2026 — Present', role:'General Manager', company:'Soutar E-commerce Store', points:['Managing operations on the Salla platform, focusing on sales growth and data analysis.'] },
-      { period:'Jan 2023 — Present', role:'Tech Developer & Graphic Designer', company:'Qasr Myan Trading, Riyadh', points:['Developed custom software solutions to optimize systems and improve user interaction.','Created compelling graphic designs that strengthened brand presence.'] }
+    aboutP1: 'I am a tech developer with a sociable and cheerful personality.',
+    aboutP2: 'Away from code, I balance my life by staying committed to the gym.',
+    stats: [{n:'+3',l:'Years Experience'}],
+    pjTitle: 'Featured Projects',
+    projects: [
+      {title:'Postertic Platform',desc:'A specialized external gallery.',features:'Seamless Salla API Integration',link:'https://postertic.com',images:[]}
     ],
+    expTitle: 'Experience',
+    experience: [{ period:'Ongoing', role:'Founder & Lead Developer', company:'Postertic Brand', points:['Built an independent external gallery.'] }],
     skTitle: 'Technical Competencies',
-    skills: [
-      {n:'Seamless API Integrations (Salla)',p:98,l:'Expert'},{n:'Web Dev (HTML, CSS, JS)',p:90,l:'Expert'},{n:'E-Commerce Management',p:95,l:'Expert'},{n:'Python & Flask',p:85,l:'Advanced'},{n:'Firebase & Firestore',p:80,l:'Advanced'},{n:'UI/UX & Photoshop',p:85,l:'Advanced'},{n:'Data & Behavior Analysis',p:88,l:'Advanced'},{n:'PC Hardware Maintenance',p:80,l:'Advanced'},{n:'Laser Engraving (EZCAD2)',p:75,l:'Intermediate'}
-    ],
+    skills: [{n:'API Integrations',p:98,l:'Expert'}],
     eduTitle: 'Academic Background',
-    education: [{ico:'🎓',deg:'TATI University College',field:'BSc in Software Engineering',period:'Feb 2019 — Jun 2022',loc:'📍 Sana\'a, Yemen'}],
+    education: [{ico:'🎓',deg:'TATI University',field:'Software Engineering',period:'2019 — 2022',loc:'📍 Sana\'a, Yemen'}],
     ctTitle: 'Get In Touch',
-    phoneLbl: 'Phone', emailLbl: 'Email', addrLbl: 'Location', addrVal: 'Al-Dirah, Riyadh 12663', projLbl: 'Projects', projVal: 'My Gallery (Postertic)',
-    footer: 'Crafted with <span class="g">✦</span> for <span class="g">Sam Iskandar Al-Kahli</span> · All Rights Reserved © 2026'
+    phoneLbl: 'Phone', emailLbl: 'Email', addrLbl: 'Location', addrVal: 'Riyadh', projLbl: 'Projects', projVal: 'Portfolio',
+    footer: 'Crafted with <span class="g">✦</span> for <span class="g">Sam Iskandar</span>'
   }
 };
 
 const STATIC_UI = {
-  ar: { nav: ['عني','الخبرات','المهارات','التعليم','التواصل'], secNums: ['01 — عني','02 — الخبرات','03 — المهارات','04 — التعليم','05 — اللغات','06 — التواصل'] },
-  en: { nav: ['About','Experience','Skills','Education','Contact'], secNums: ['01 — About','02 — Experience','03 — Skills','04 — Education','05 — Languages','06 — Contact'] }
+  ar: { nav: ['عني','المشاريع','الخبرات','المهارات','التعليم','التواصل'], secNums: ['01 — عني','02 — المشاريع','03 — الخبرات','04 — المهارات','05 — اللغات','06 — التواصل'] },
+  en: { nav: ['About','Projects','Experience','Skills','Education','Contact'], secNums: ['01 — About','02 — Projects','03 — Experience','04 — Skills','05 — Education','06 — Languages','07 — Contact'] }
 };
 
 let LANG = localStorage.getItem('sam_lang') || 'ar';
 let ACTIVE_DATA = null;
 
 function renderPage(lang, animate) {
-  // القراءة من لوحة التحكم (الادمن) مباشرة
   const savedState = JSON.parse(localStorage.getItem('sam_cv_v2'));
   ACTIVE_DATA = savedState ? savedState : DEFAULTS;
   
@@ -84,8 +84,24 @@ function renderPage(lang, animate) {
   document.getElementById('lbl-ar').className = isEn ? 'lang-inactive' : 'lang-active';
   document.getElementById('lbl-en').className = isEn ? 'lang-active' : 'lang-inactive';
 
+  if (isEn) {
+      document.getElementById('pg-ats-btn-ar').style.display = 'none';
+      document.getElementById('pg-ats-btn-en').style.display = 'inline';
+  } else {
+      document.getElementById('pg-ats-btn-ar').style.display = 'inline';
+      document.getElementById('pg-ats-btn-en').style.display = 'none';
+  }
+
   const navAs = document.querySelectorAll('#nav-links a');
   STATIC_UI[lang].nav.forEach((txt,i) => { if(navAs[i]) navAs[i].textContent = txt; });
+
+  const profileImg = document.getElementById('pg-profile-pic');
+  if(D.profilePic && D.profilePic.trim() !== '') {
+      profileImg.src = D.profilePic;
+      profileImg.style.display = 'inline-block';
+  } else {
+      profileImg.style.display = 'none';
+  }
 
   document.getElementById('pg-badge').textContent = D.badge || '';
   document.getElementById('pg-name1').textContent  = D.name1 || '';
@@ -96,7 +112,7 @@ function renderPage(lang, animate) {
   document.getElementById('pg-cta2').textContent   = D.cta2 || '';
   document.getElementById('pg-scroll').textContent = D.scroll || '';
 
-  const ids = ['lbl-about','lbl-exp','lbl-sk','lbl-edu','lbl-lng','lbl-ct'];
+  const ids = ['lbl-about','lbl-pj','lbl-exp','lbl-sk','lbl-edu','lbl-lng','lbl-ct'];
   ids.forEach((id,i) => { const el=document.getElementById(id); if(el) el.textContent=STATIC_UI[lang].secNums[i]; });
 
   document.getElementById('pg-about-title').textContent = D.aboutTitle || '';
@@ -105,6 +121,34 @@ function renderPage(lang, animate) {
 
   if(D.stats) {
     document.getElementById('pg-stats').innerHTML = D.stats.map(s=>`<div class="stat-c"><div class="stat-n">${s.n}</div><div class="stat-l">${s.l}</div></div>`).join('');
+  }
+
+  document.getElementById('pg-pj-title').textContent = D.pjTitle || '';
+  const projContainer = document.getElementById('pg-projects');
+  if(D.projects && projContainer) {
+    projContainer.innerHTML = D.projects.map(p => {
+      let imgsHTML = '';
+      if(p.images && p.images.length > 0) {
+        imgsHTML = `<div class="pj-gallery">${p.images.map(img => `<img src="${img}" alt="${p.title}" class="pj-img">`).join('')}</div>`;
+      }
+      let featuresHTML = '';
+      if(p.features) {
+        featuresHTML = `<ul class="pj-features">${p.features.split('\n').filter(f=>f.trim()).map(f => `<li>${f}</li>`).join('')}</ul>`;
+      }
+      let linkHTML = '';
+      if(p.link) {
+        linkHTML = `<a href="${p.link}" target="_blank" class="btn btn-o pj-link">${isEn ? 'View Project' : 'عرض المشروع'} <i class='bx bx-link-external'></i></a>`;
+      }
+      return `<div class="pj-card reveal">
+                ${imgsHTML}
+                <div class="pj-info">
+                  <h3 class="pj-title">${p.title}</h3>
+                  <p class="pj-desc">${p.desc}</p>
+                  ${featuresHTML}
+                  ${linkHTML}
+                </div>
+              </div>`;
+    }).join('');
   }
 
   document.getElementById('pg-exp-title').textContent = D.expTitle || '';
@@ -122,47 +166,33 @@ function renderPage(lang, animate) {
     document.getElementById('pg-edu').innerHTML = D.education.map(e=>`<div class="edu-c reveal"><div class="edu-ico">${e.ico}</div><div><div class="edu-deg">${e.deg}</div><div class="edu-field">${e.field}</div><div class="edu-period">${e.period}</div><div class="edu-loc">${e.loc}</div></div></div>`).join('');
   }
 
-  document.getElementById('lng-ar-name').textContent   = lang === 'ar' ? 'العربية' : 'Arabic';
-  document.getElementById('lng-ar-lv').textContent     = lang === 'ar' ? 'اللغة الأم — Native' : 'Native Speaker';
-  document.getElementById('lng-en-lv').textContent     = lang === 'ar' ? 'B2 — متوسط متقدم' : 'B2 — Upper Intermediate';
+  document.getElementById('pg-lng-title').textContent  = isEn ? 'Languages' : 'اللغات';
+  document.getElementById('lng-ar-name').textContent   = isEn ? 'Arabic' : 'العربية';
+  document.getElementById('lng-ar-lv').textContent     = isEn ? 'Native Speaker' : 'اللغة الأم — Native';
+  document.getElementById('lng-en-lv').textContent     = isEn ? 'B2 — Upper Intermediate' : 'B2 — متوسط متقدم';
 
   document.getElementById('pg-ct-title').textContent = D.ctTitle || '';
-  
-  // دمج بيانات التواصل من لوحة التحكم (عربي وإنجليزي)
   document.getElementById('pg-contact').innerHTML = `
     <a href="${ACTIVE_DATA.ar.phoneHref || '#'}" class="ct-c" target="_blank">
-      <div class="ct-ico">📞</div>
-      <div>
-        <div class="ct-lbl">${lang === 'ar' ? 'الهاتف' : (D.phoneLbl || 'Phone')}</div>
-        <div class="ct-val">${lang === 'ar' ? D.phone : ACTIVE_DATA.ar.phone}</div>
-      </div>
+      <div class="ct-ico"><i class='bx bx-phone'></i></div>
+      <div><div class="ct-lbl">${isEn ? (D.phoneLbl || 'Phone') : 'الهاتف'}</div><div class="ct-val">${isEn ? ACTIVE_DATA.ar.phone : D.phone}</div></div>
     </a>
     <a href="${ACTIVE_DATA.ar.emailHref || '#'}" class="ct-c" target="_blank">
-      <div class="ct-ico">✉️</div>
-      <div>
-        <div class="ct-lbl">${lang === 'ar' ? 'البريد الإلكتروني' : (D.emailLbl || 'Email')}</div>
-        <div class="ct-val">${lang === 'ar' ? D.email : ACTIVE_DATA.ar.email}</div>
-      </div>
+      <div class="ct-ico"><i class='bx bx-envelope'></i></div>
+      <div><div class="ct-lbl">${isEn ? (D.emailLbl || 'Email') : 'البريد الإلكتروني'}</div><div class="ct-val">${isEn ? ACTIVE_DATA.ar.email : D.email}</div></div>
     </a>
     <a href="#" class="ct-c" target="_self">
-      <div class="ct-ico">📍</div>
-      <div>
-        <div class="ct-lbl">${lang === 'ar' ? 'الموقع' : (D.addrLbl || 'Location')}</div>
-        <div class="ct-val">${lang === 'ar' ? D.address : D.addrVal}</div>
-      </div>
+      <div class="ct-ico"><i class='bx bx-map'></i></div>
+      <div><div class="ct-lbl">${isEn ? (D.addrLbl || 'Location') : 'الموقع'}</div><div class="ct-val">${isEn ? D.addrVal : D.address}</div></div>
     </a>
     <a href="https://gallery.postertic.com/" class="ct-c" target="_blank">
-      <div class="ct-ico">🖼️</div>
-      <div>
-        <div class="ct-lbl">${lang === 'ar' ? 'المشاريع' : (D.projLbl || 'Projects')}</div>
-        <div class="ct-val">${lang === 'ar' ? D.project : D.projVal}</div>
-      </div>
+      <div class="ct-ico"><i class='bx bx-images'></i></div>
+      <div><div class="ct-lbl">${isEn ? (D.projLbl || 'Projects') : 'المشاريع'}</div><div class="ct-val">${isEn ? D.projVal : D.project}</div></div>
     </a>
   `;
 
   document.getElementById('pg-footer').innerHTML = D.footer || '';
 
-  // تطبيق الألوان من لوحة التحكم
   if(ACTIVE_DATA.colors) {
       const c = ACTIVE_DATA.colors;
       if(c.gold) document.documentElement.style.setProperty('--gold', c.gold);
@@ -174,10 +204,10 @@ function renderPage(lang, animate) {
       if(c.tx2) document.documentElement.style.setProperty('--tx2', c.tx2);
   }
 
-  // إظهار/إخفاء الأقسام بناءً على لوحة التحكم
   if(ACTIVE_DATA.sections) {
       const s = ACTIVE_DATA.sections;
       if(document.getElementById('about')) document.getElementById('about').style.display = s.about === false ? 'none' : 'block';
+      if(document.getElementById('projects')) document.getElementById('projects').style.display = s.projects === false ? 'none' : 'block';
       if(document.getElementById('experience')) document.getElementById('experience').style.display = s.experience === false ? 'none' : 'block';
       if(document.getElementById('skills')) document.getElementById('skills').style.display = s.skills === false ? 'none' : 'block';
       if(document.getElementById('education')) document.getElementById('education').style.display = s.education === false ? 'none' : 'block';
@@ -239,15 +269,12 @@ function type(){
 }
 function restartTyping(){ clearTimeout(tTimer);tWi=0;tCi=0;tDel=false;const el=getTyped();if(el)el.textContent='';tTimer=setTimeout(type,600); }
 
-
-
 const cv=document.getElementById('stars'), cx=cv.getContext('2d');
 let stars=[],W,H;
 function rsz(){W=cv.width=innerWidth;H=cv.height=innerHeight;}
 rsz(); window.addEventListener('resize',()=>{rsz();mkStars();});
 function mkStars(){
-  stars=[];
-  const n=Math.floor(W*H/5800);
+  stars=[]; const n=Math.floor(W*H/5800);
   for(let i=0;i<n;i++) stars.push({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.15+.2,a:Math.random(),sp:Math.random()*.28+.04,dr:(Math.random()-.5)*.25,g:Math.random()<.15});
 }
 mkStars();
@@ -274,35 +301,18 @@ document.addEventListener('mousemove',e=>{smx=e.clientX;smy=e.clientY});
   requestAnimationFrame(drawS);
 })(0);
 
-window.addEventListener('scroll',()=>{
-  document.getElementById('navbar').style.background = scrollY>50?'rgba(8,8,8,.96)':'rgba(8,8,8,.75)';
-});
-window.addEventListener('scroll',()=>{
-  const h=document.getElementById('hero'),sy=scrollY;
-  if(sy<innerHeight){h.style.transform=`translateY(${sy*.22}px)`;h.style.opacity=1-sy/(innerHeight*.82);}
-});
+window.addEventListener('scroll',()=>{ document.getElementById('navbar').style.background = scrollY>50?'rgba(8,8,8,.96)':'rgba(8,8,8,.75)'; });
+window.addEventListener('scroll',()=>{ const h=document.getElementById('hero'),sy=scrollY; if(sy<innerHeight){h.style.transform=`translateY(${sy*.22}px)`;h.style.opacity=1-sy/(innerHeight*.82);} });
 
-// إخفاء لوحة الألوان المدمجة لأننا نعتمد على لوحة تحكم الأدمن بالكامل
-const inlineColorPanel = document.getElementById('color-panel');
-if(inlineColorPanel) inlineColorPanel.style.display = 'none';
-
-// تشغيل الصفحة عند التحميل
 renderPage(LANG, false);
+window.addEventListener('storage', (e) => { if (e.key === 'sam_cv_v2') renderPage(LANG, true); });
 
-// مستمع لتحديث الصفحة أوتوماتيكياً في حال تم تغيير البيانات من لوحة تحكم الأدمن في تبويب آخر
-window.addEventListener('storage', (e) => {
-  if (e.key === 'sam_cv_v2') {
-    renderPage(LANG, true);
-  }
-});
 document.getElementById('btn-ats-download').addEventListener('click', function() {
     const savedState = JSON.parse(localStorage.getItem('sam_cv_v2'));
     const DATA_ALL = savedState ? savedState : DEFAULTS;
     const D = DATA_ALL[LANG];
     const isAr = LANG === 'ar';
-
     const printWindow = window.open('', '_blank');
-    
     const htmlContent = `
         <!DOCTYPE html>
         <html lang="${LANG}" dir="${isAr ? 'rtl' : 'ltr'}">
@@ -333,70 +343,20 @@ document.getElementById('btn-ats-download').addEventListener('click', function()
                 ${isAr ? 'الموقع' : 'Location'}: ${isAr ? D.address : D.addrVal} | 
                 ${isAr ? 'الهاتف' : 'Phone'}: ${isAr ? D.phone : DATA_ALL.ar.phone} | 
                 ${isAr ? 'البريد' : 'Email'}: ${isAr ? D.email : DATA_ALL.ar.email}<br>
-                ${isAr ? 'المشاريع' : 'Portfolio'}: https://gallery.postertic.com/
             </div>
-            
             <h2>${D.aboutTitle}</h2>
-            <div class="section-content">
-                <p>${D.aboutP1}</p>
-                <p>${D.aboutP2}</p>
-            </div>
-
-            ${D.stats ? `
-            <h2>${isAr ? 'إحصائيات سريعة' : 'Key Statistics'}</h2>
-            <div class="stats-box">
-                ${D.stats.map(s => `<div class="stat-item"><strong>${s.n}:</strong> ${s.l}</div>`).join('')}
-            </div>` : ''}
-
+            <div class="section-content"><p>${D.aboutP1}</p><p>${D.aboutP2}</p></div>
+            ${D.stats ? `<h2>${isAr ? 'إحصائيات سريعة' : 'Key Statistics'}</h2><div class="stats-box">${D.stats.map(s => `<div class="stat-item"><strong>${s.n}:</strong> ${s.l}</div>`).join('')}</div>` : ''}
+            ${D.projects && D.projects.length > 0 ? `<h2>${D.pjTitle}</h2><div class="section-content">${D.projects.map(p => `<div class="item-header"><span>${p.title}</span></div><div class="sub-header">${p.link || ''}</div><p style="margin: 5px 0; font-size: 11pt;">${p.desc}</p><ul>${p.features ? p.features.split('\n').filter(f=>f.trim()).map(f => `<li>${f.replace(/<\/?[^>]+(>|$)/g, "")}</li>`).join('') : ''}</ul>`).join('')}</div>` : ''}
             <h2>${D.expTitle}</h2>
-            <div class="section-content">
-                ${D.experience.map(e => `
-                    <div class="item-header">
-                        <span>${e.role}</span>
-                        <span>${e.period}</span>
-                    </div>
-                    <div class="sub-header">${e.company}</div>
-                    <ul>
-                        ${e.points.map(p => `<li>${p.replace(/<\/?[^>]+(>|$)/g, "")}</li>`).join('')}
-                    </ul>
-                `).join('')}
-            </div>
-
+            <div class="section-content">${D.experience.map(e => `<div class="item-header"><span>${e.role}</span><span>${e.period}</span></div><div class="sub-header">${e.company}</div><ul>${e.points.map(p => `<li>${p.replace(/<\/?[^>]+(>|$)/g, "")}</li>`).join('')}</ul>`).join('')}</div>
             <h2>${D.skTitle}</h2>
-            <div class="section-content">
-                <p><strong>${isAr ? 'الخبرات التقنية والعملية' : 'Technical & Practical Expertise'}:</strong></p>
-                <p>${D.skills.map(s => `${s.n} (${s.l})`).join(' • ')}</p>
-            </div>
-
+            <div class="section-content"><p>${D.skills.map(s => `${s.n} (${s.l})`).join(' • ')}</p></div>
             <h2>${D.eduTitle}</h2>
-            <div class="section-content">
-                ${D.education.map(e => `
-                    <div class="item-header">
-                        <span>${e.deg}</span>
-                        <span>${e.period}</span>
-                    </div>
-                    <div class="sub-header">${e.field} | ${e.loc}</div>
-                `).join('')}
-            </div>
-
-            <h2>${isAr ? 'اللغات' : 'Languages'}</h2>
-            <div class="section-content">
-                <p>${isAr ? 'العربية: لغة أم' : 'Arabic: Native'} • ${isAr ? 'الإنجليزية: B2 - متوسط متقدم' : 'English: B2 - Upper Intermediate'}</p>
-            </div>
-
-            <footer style="margin-top: 30px; font-size: 9pt; text-align: center; color: #888; border-top: 1px solid #eee; padding-top: 10px;">
-                ${D.footer.replace(/<\/?[^>]+(>|$)/g, "")}
-            </footer>
+            <div class="section-content">${D.education.map(e => `<div class="item-header"><span>${e.deg}</span><span>${e.period}</span></div><div class="sub-header">${e.field} | ${e.loc}</div>`).join('')}</div>
         </body>
         </html>
     `;
-
-    printWindow.document.write(htmlContent);
-    printWindow.document.close();
-    printWindow.focus();
-    
-    setTimeout(() => {
-        printWindow.print();
-        printWindow.close();
-    }, 500);
+    printWindow.document.write(htmlContent); printWindow.document.close(); printWindow.focus();
+    setTimeout(() => { printWindow.print(); printWindow.close(); }, 500);
 });

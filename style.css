@@ -190,3 +190,52 @@ input[type="color"]{position:absolute;opacity:0;width:0;height:0;pointer-events:
   .hero-cta{flex-direction:column;align-items:center}
   #color-box{width:240px}
 }
+.hero-profile-pic { width: 140px; height: 140px; border-radius: 50%; object-fit: cover; border: 2px solid var(--gold); margin-bottom: 1.5rem; box-shadow: 0 0 25px rgba(201,168,76,0.2); opacity: 0; animation: fadeUp 1s 0.2s forwards; background:var(--bg2); }
+@media(max-width: 768px) { .hero-profile-pic { width: 120px; height: 120px; } }
+
+/* Projects */
+/* Projects */
+.pj-grid { display: grid; grid-template-columns: 1fr; gap: 3rem; }
+.pj-card { background: var(--sur); border: 1px solid var(--bdr); border-radius: var(--r); overflow: hidden; transition: transform .4s, border-color .4s; }
+.pj-card:hover { border-color: var(--gold); transform: translateY(-6px); box-shadow: 0 10px 40px rgba(0,0,0,0.5); }
+
+/* تعديلات معرض الصور */
+.pj-gallery { 
+  display: flex; 
+  overflow-x: auto; 
+  overflow-y: hidden; 
+  scroll-snap-type: x mandatory; 
+  border-bottom: 1px solid var(--bdr); 
+  scrollbar-width: thin; 
+  scrollbar-color: var(--gold-d) transparent; 
+  background: var(--bg2); /* خلفية داكنة عشان تبرز الصورة */
+}
+.pj-gallery::-webkit-scrollbar { height: 6px; }
+.pj-gallery::-webkit-scrollbar-thumb { background: var(--gold-d); border-radius: 3px; }
+
+/* التعديل السحري لعرض الصورة بالكامل */
+.pj-img { 
+  flex: 0 0 0%; 
+  width: 100%; 
+  height: 420px; /* تثبيت الارتفاع عشان ما يتلخبط التصميم */
+  object-fit: contain; /* هذا الأمر يعرض الصورة كاملة بدون قص */
+  scroll-snap-align: start; 
+  padding: 1rem; /* مساحة تنفس خفيفة حول الصورة */
+}
+
+.pj-info { padding: 2.2rem; }
+.pj-title { font-size: 1.6rem; font-weight: 900; color: #fff; margin-bottom: .6rem; font-family: var(--font-disp-ar); }
+body[lang="en"] .pj-title { font-family: var(--font-disp-en); }
+.pj-desc { color: var(--tx2); line-height: 1.8; margin-bottom: 1.6rem; font-size: .95rem; }
+.pj-features { list-style: none; margin-bottom: 2rem; }
+.pj-features li { position: relative; padding-right: 1.3rem; margin-bottom: .6rem; color: var(--tx); font-size: .92rem; line-height: 1.7; }
+body[lang="en"] .pj-features li { padding-right: 0; padding-left: 1.3rem; }
+.pj-features li::before { content: '✦'; position: absolute; right: 0; color: var(--gold); font-size: .75rem; top: .3rem; }
+body[lang="en"] .pj-features li::before { right: auto; left: 0; }
+.pj-link { font-size: .82rem; }
+
+/* متجاوب مع الجوال */
+@media(max-width:768px){ 
+  .pj-img { height: 260px; padding:4px; } 
+  .pj-info { padding: 1.5rem; } 
+}
