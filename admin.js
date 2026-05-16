@@ -761,18 +761,58 @@ document.getElementById('btn-auto-translate').addEventListener('click', async ()
         btn.innerHTML = originalText; btn.style.opacity = '1'; btn.disabled = false;
     }
 });
-// ميزة تصدير البيانات ككود افتراضي
-document.getElementById('btn-export').addEventListener('click', () => {
-    collectState(); // نجمع أحدث التعديلات
-    
-    // بناء الكود كنص
-    const defaultCode = `const DEFAULTS = ${JSON.stringify(S, null, 2)};`;
-    
-    // نسخه للحافظة (Clipboard)
-    navigator.clipboard.writeText(defaultCode).then(() => {
-        showToast('✅ تم نسخ كود DEFAULTS الجديد! الصقه في ملفات الجافاسكربت');
-    }).catch(err => {
-        console.error(err);
-        showToast('❌ حدث خطأ أثناء النسخ، استخدم طريقة الـ Console');
-    });
+/* ==========================================
+   ميزة نسخ كود البيانات (DEFAULTS) بنسخ إجباري
+   ========================================== */
+document.getElementById('btn-copy-code').addEventListener('click', () => {
+    // نجيب آخر بيانات محفوظة
+    let cvData = localStorage.getItem('sam_cv_v2');
+    if (!cvData) {
+        showToast('⚠️ لا توجد بيانات محفوظة لنسخها! اضغط حفظ أولاً.');
+        return;
+    }
+
+    // نجهز الكود بتنسيق سليم 100%
+    let jsCode = "const DEFAULTS = " + JSON.stringify(JSON.parse(cvData), null, 2) + ";";
+
+    // محاولة النسخ بالطريقة الحديثة
+    if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(jsCode).then(() => {
+            showToast('✅ تم نسخ الكود كاملاً! الصقه الآن في ملفاتك.');
+        }).catch(err => {
+            // إذا فشلت نستخدم الطريقة الاحتياطية (الإجبارية)
+            fallbackCopyTextToClipboard(jsCode);
+        });
+    } else {
+        // إذا المتصفح ما يدعم، نستخدم الطريقة الاحتياطية
+        fallbackCopyTextToClipboard(jsCode);
+    }
 });
+
+// الطريقة الاحتياطية للنسخ (ممتازة للنصوص الضخمة جداً مثل صور Base64)
+function fallbackCopyTextToClipboard(text) {
+    let textArea = document.createElement("textarea");
+    textArea.value = text;
+    
+    // إخفاء المربع عشان ما يخرب شكل الصفحة
+    textArea.style.top = "0";
+    textArea.style.left = "0";
+    textArea.style.position = "fixed";
+    textArea.style.opacity = "0";
+    
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+
+    try {
+        let successful = document.execCommand('copy');
+        if (successful) {
+            showToast('✅ تم نسخ الكود كاملاً! الصقه الآن في ملفاتك.');
+        } else {
+            showToast('❌ فشل النسخ، حجم الصور كبير جداً.');
+        }
+    } catch (err) {
+        showToast('❌ حدث خطأ غير متوقع أثناء النسخ.');
+    }
+    document.body.removeChild(textArea);
+}
