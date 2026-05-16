@@ -14,6 +14,7 @@
   <div class="tb-logo">SAM.AK <span>لوحة التحكم / Admin</span></div>
   <div class="tb-actions">
     <span class="save-status" id="save-status">لم يُحفظ بعد</span>
+    <button class="tb-btn" id="btn-auto-translate" style="background:var(--sur2); color:var(--gold); border-color:var(--gold);"><i class='bx bx-transfer'></i> ترجمة آلية (AR ➔ EN)</button>
     <button class="tb-btn tb-reset" id="btn-reset"><i class='bx bx-reset'></i> إعادة تعيين</button>
     <button class="tb-btn tb-preview" id="btn-preview" onclick="window.open('index.html','_blank')"><i class='bx bx-show'></i> معاينة</button>
     <button class="tb-btn tb-save" id="btn-save"><i class='bx bx-save'></i> حفظ التغييرات</button>
@@ -221,7 +222,22 @@
 
   <div class="panel" id="panel-colors">
     <div class="panel-title"><i class='bx bx-palette'></i> الألوان والثيم</div>
-    <div class="card"><div class="f-grid f-grid-2" id="color-pickers"></div></div>
+    <div class="panel-sub">غيّر ألوان الصفحة بالكامل بضغطة زر</div>
+    <div class="card">
+      <div class="color-section" style="margin-bottom: 1.5rem;">
+        <div class="f-label" style="margin-bottom: 0.8rem; display:block;">ثيمات جاهزة / Quick Presets</div>
+        <div class="presets-row" style="display:flex; gap:10px; flex-wrap:wrap;">
+          <div class="preset" style="background:#C9A84C; width:32px; height:32px; border-radius:50%; cursor:pointer; border:2px solid transparent;" title="Gold Classic" data-p='{"gold":"#C9A84C","goldL":"#E8C97A","goldD":"#7a6129","bg":"#080808","bg2":"#0e0e0e","tx":"#e8e0d0","tx2":"#8a8070"}'></div>
+          <div class="preset" style="background:#60a5fa; width:32px; height:32px; border-radius:50%; cursor:pointer; border:2px solid transparent;" title="Blue Steel" data-p='{"gold":"#60a5fa","goldL":"#93c5fd","goldD":"#1e3a8a","bg":"#060b14","bg2":"#0b1221","tx":"#d0e4f7","tx2":"#607080"}'></div>
+          <div class="preset" style="background:#a78bfa; width:32px; height:32px; border-radius:50%; cursor:pointer; border:2px solid transparent;" title="Purple Haze" data-p='{"gold":"#a78bfa","goldL":"#c4b5fd","goldD":"#4c1d95","bg":"#08060f","bg2":"#0e0c18","tx":"#e0d8f5","tx2":"#7060a0"}'></div>
+          <div class="preset" style="background:#34d399; width:32px; height:32px; border-radius:50%; cursor:pointer; border:2px solid transparent;" title="Emerald" data-p='{"gold":"#34d399","goldL":"#6ee7b7","goldD":"#064e3b","bg":"#060e0b","bg2":"#0b1610","tx":"#d0f0e4","tx2":"#406858"}'></div>
+          <div class="preset" style="background:#f87171; width:32px; height:32px; border-radius:50%; cursor:pointer; border:2px solid transparent;" title="Rose Red" data-p='{"gold":"#f87171","goldL":"#fca5a5","goldD":"#7f1d1d","bg":"#0f0808","bg2":"#180c0c","tx":"#f5d0d0","tx2":"#906060"}'></div>
+        </div>
+      </div>
+      <div style="height:1px; background:var(--bdr2); margin:1.5rem 0;"></div>
+      <div class="f-label" style="margin-bottom: 1rem; display:block;">تخصيص يدوي / Custom Colors</div>
+      <div class="color-grid-ui" id="color-pickers" style="display:grid; grid-template-columns:repeat(2,1fr); gap:1rem;"></div>
+    </div>
   </div>
 
   <div class="panel" id="panel-sections">
