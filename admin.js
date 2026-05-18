@@ -443,3 +443,19 @@ function fallbackCopyTextToClipboard(text) {
     }
     document.body.removeChild(textArea);
 }
+/* ==========================================
+   ميزة حذف الصورة الشخصية
+   ========================================== */
+document.getElementById('btn-del-ar-pic').addEventListener('click', (e) => {
+    e.preventDefault(); // لمنع أي تحديث للصفحة
+    document.getElementById('ar-profile-pic').value = '';
+    document.getElementById('ar-profile-file').value = '';
+    showToast('🗑️ تم إزالة الصورة الشخصية العربية (لا تنسَ ضغط حفظ)');
+});
+
+document.getElementById('btn-del-en-pic').addEventListener('click', (e) => {
+    e.preventDefault(); // لمنع أي تحديث للصفحة
+    document.getElementById('en-profile-pic').value = '';
+    document.getElementById('en-profile-file').value = '';
+    showToast('🗑️ تم إزالة الصورة الشخصية الإنجليزية (لا تنسَ ضغط حفظ)');
+});

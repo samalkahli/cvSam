@@ -59,7 +59,10 @@
       <div class="f-grid">
         <div class="f-group" style="background:rgba(201,168,76,.05); padding:1rem; border:1px dashed var(--gold); border-radius:var(--r);">
           <label class="f-label" style="color:var(--gold)">الصورة الشخصية (اختر من جهازك)</label>
-          <input type="file" id="ar-profile-file" accept="image/*" class="f-input" style="padding:0.4rem; margin-bottom:0.5rem;">
+          <div style="display:flex; gap:10px; margin-bottom:0.5rem;">
+            <input type="file" id="ar-profile-file" accept="image/*" class="f-input" style="padding:0.4rem; flex:1;">
+            <button class="del-btn" id="btn-del-ar-pic" title="حذف الصورة" style="width:38px; height:38px; position:relative;"><i class='bx bx-trash'></i></button>
+          </div>
           <input type="text" class="f-input" id="ar-profile-pic" placeholder="سيتم تحويل الصورة لكود هنا تلقائياً..." readonly style="opacity:0.6; font-size:10px;">
         </div>
         <div class="f-grid f-grid-2">
@@ -146,7 +149,10 @@
       <div class="f-grid">
         <div class="f-group" style="background:rgba(201,168,76,.05); padding:1rem; border:1px dashed var(--gold); border-radius:var(--r);">
           <label class="f-label" style="color:var(--gold)">Profile Image (Upload)</label>
-          <input type="file" id="en-profile-file" accept="image/*" class="f-input" style="padding:0.4rem; margin-bottom:0.5rem;">
+          <div style="display:flex; gap:10px; margin-bottom:0.5rem;">
+            <input type="file" id="en-profile-file" accept="image/*" class="f-input" style="padding:0.4rem; flex:1;">
+            <button class="del-btn" id="btn-del-en-pic" title="Delete Image" style="width:38px; height:38px; position:relative;"><i class='bx bx-trash'></i></button>
+          </div>
           <input type="text" class="f-input" id="en-profile-pic" placeholder="Image will be encoded here..." readonly style="opacity:0.6; font-size:10px;">
         </div>
         <div class="f-grid f-grid-2">
