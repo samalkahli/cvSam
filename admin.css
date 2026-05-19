@@ -170,3 +170,83 @@ input[type="color"]{position:absolute;opacity:0;width:0;height:0;pointer-events:
   #main{padding:1.2rem}
   .f-grid-2,.f-grid-3,.stats-grid,.color-grid-ui{grid-template-columns:1fr}
 }
+/* =========================================
+   📱 إصلاحات شاشات الجوال للوحة التحكم
+   ========================================= */
+@media (max-width: 768px) {
+    /* 1. إصلاح الهيكل الأساسي والقائمة الجانبية */
+    body {
+        flex-direction: column !important;
+        display: flex;
+    }
+    
+    .sidebar {
+        width: 100% !important;
+        height: auto !important;
+        position: sticky !important;
+        top: 0;
+        display: flex !important;
+        flex-direction: row !important;
+        overflow-x: auto !important; /* جعل القائمة قابلة للسحب يميناً ويساراً */
+        padding: 10px !important;
+        border-left: none !important;
+        border-bottom: 1px solid var(--bdr) !important;
+        white-space: nowrap !important;
+        z-index: 100;
+        background: var(--bg2);
+    }
+    
+    .sb-item {
+        display: inline-flex !important;
+        margin-bottom: 0 !important;
+        margin-left: 10px !important;
+        flex-shrink: 0 !important;
+    }
+
+    /* 2. جعل المحتوى الأساسي يأخذ العرض كاملاً */
+    .main, #main {
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 1rem !important;
+    }
+
+    /* 3. إصلاح الحقول المزدوجة لتصبح تحت بعضها */
+    .f-grid, .f-grid-2 {
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+    }
+
+    /* 4. ترتيب العناوين داخل المشاريع والخبرات */
+    .list-item-head {
+        flex-wrap: wrap !important;
+        gap: 10px !important;
+        padding: 1rem !important;
+    }
+    
+    .list-item-title {
+        width: 100% !important;
+        font-size: 1rem !important;
+        margin-bottom: 0.5rem;
+    }
+
+    /* 5. توسيع الأزرار لتسهيل الضغط عليها */
+    .btn {
+        width: 100% !important;
+        justify-content: center !important;
+        margin-bottom: 0.5rem !important;
+    }
+
+    /* 6. إصلاح واجهة إعدادات جيت هاب */
+    .gh-settings-panel {
+        padding: 1rem !important;
+    }
+    
+    #gh-setup-form > div {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* 7. تصغير العناصر غير الضرورية */
+    .f-group label {
+        font-size: 0.8rem !important;
+    }
+}
