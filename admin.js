@@ -1,13 +1,10 @@
 const KEY = 'sam_cv_v2';
 
-
-
 function loadState(){ try{ const s=localStorage.getItem(KEY); return s?JSON.parse(s):JSON.parse(JSON.stringify(DEFAULTS)); }catch(e){return JSON.parse(JSON.stringify(DEFAULTS));} }
 function saveState(s){ try { localStorage.setItem(KEY,JSON.stringify(s)); return true; } catch(e) { alert("⚠️ الذاكرة ممتلئة! الصور كثيرة جداً."); return false; } }
 
 let S = loadState();
 
-// دالة منع قص النصوص (تحويل علامات التنصيص)
 const esc = str => (str||'').toString().replace(/"/g, '&quot;');
 
 document.querySelectorAll('.sb-item').forEach(item=>{
@@ -213,7 +210,7 @@ document.getElementById('main').addEventListener('click', e => {
   const delBtn = t.closest('.del-btn');
   if (delBtn) {
     e.stopPropagation();
-    collectState(); // <--- الحل السحري لمشكلة فقدان البيانات
+    collectState();
     if(delBtn.dataset.delPj){ const [lang,i]=delBtn.dataset.delPj.split('-'); S[lang].projects.splice(+i,1); renderProjects(lang,S[lang].projects); }
     else if(delBtn.dataset.delExp){ const [lang,i]=delBtn.dataset.delExp.split('-'); S[lang].experience.splice(+i,1); renderExp(lang,S[lang].experience); }
     else if(delBtn.dataset.delSk){ const [lang,i]=delBtn.dataset.delSk.split('-'); S[lang].skills.splice(+i,1); renderSkills(lang,S[lang].skills); }
@@ -226,12 +223,11 @@ document.getElementById('main').addEventListener('click', e => {
   
   const addBtn = t.closest('.add-btn');
   if (addBtn && addBtn.dataset.addPt) {
-    collectState(); // <--- الحل السحري لمشكلة مسح الكلام
+    collectState();
     const [lang,ei] = addBtn.dataset.addPt.split('-'); S[lang].experience[+ei].points.push(''); renderExp(lang,S[lang].experience); const item = document.getElementById(lang+'-exp-'+ei); if(item) { item.classList.add('open'); item.querySelector('.list-item-body').style.display='block'; } 
   }
 });
 
-// إضافة أزرار الأقسام (مع حفظ الشغل قبل ما نضيف عشان ما ينمسح)
 document.getElementById('ar-add-pj').onclick=()=>{ collectState(); S.ar.projects.push({title:'مشروع جديد',desc:'',features:'',link:'',images:[]});renderProjects('ar',S.ar.projects); };
 document.getElementById('en-add-pj').onclick=()=>{ collectState(); S.en.projects.push({title:'New Project',desc:'',features:'',link:'',images:[]});renderProjects('en',S.en.projects); };
 document.getElementById('ar-add-exp').onclick=()=>{ collectState(); S.ar.experience.push({period:'',role:'خبرة جديدة',company:'',points:['']});renderExp('ar',S.ar.experience); };
@@ -241,15 +237,187 @@ document.getElementById('en-add-sk').onclick=()=>{ collectState(); S.en.skills.p
 document.getElementById('ar-add-edu').onclick=()=>{ collectState(); S.ar.education.push({ico:'🎓',deg:'اسم',field:'التخصص',period:'الفترة',loc:'الموقع'});renderEdu('ar',S.ar.education); };
 document.getElementById('en-add-edu').onclick=()=>{ collectState(); S.en.education.push({ico:'🎓',deg:'Name',field:'Field',period:'Period',loc:'Loc'});renderEdu('en',S.en.education); };
 
-document.getElementById('btn-save').addEventListener('click',()=>{ 
-    collectState(); 
-    if(saveState(S)) {
-        const st=document.getElementById('save-status'); 
-        st.textContent='✓ تم الحفظ';st.className='save-status ok'; 
-        setTimeout(()=>{st.textContent='محفوظ';st.className='save-status ok';},2000); 
-        showToast('💾 تم الحفظ بنجاح — افتح index.html لترى التغييرات'); 
+/* ==========================================
+   نظام التنبيه (Alert Modal) الاحترافي لـ GitHub
+   ========================================== */
+
+// حقن (Inject) تصميم التنبيه برمجياً دون المساس بملف الـ HTML
+const ghModalHTML = `
+<div id="gh-custom-alert" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 99999; align-items: center; justify-content: center; backdrop-filter: blur(8px);">
+    <div style="background: var(--bg2); border: 1px solid var(--gold); border-radius: 12px; padding: 2.5rem; width: 90%; max-width: 420px; box-shadow: 0 10px 50px rgba(201,168,76,0.25); position: relative; animation: fadeUp 0.3s ease; text-align: center;">
+        <button id="close-gh-alert" style="position: absolute; top: 1rem; right: 1.5rem; background: none; border: none; color: var(--tx2); font-size: 2rem; cursor: pointer; transition: color 0.3s;">&times;</button>
+        
+        <i class='bx bxl-github' style="font-size: 4rem; color: var(--gold); margin-bottom: 0.5rem;"></i>
+        <h3 style="color: #fff; margin: 0; font-family: var(--font-disp-ar); font-size: 1.5rem;">إعدادات الرفع لـ GitHub</h3>
+        <p style="color: var(--tx2); font-size: 0.9rem; margin-top: 0.5rem; margin-bottom: 1.8rem;">البيانات تُحفظ في متصفحك الحالي بأمان تام.</p>
+
+        <div style="text-align: right;">
+            <input type="text" id="gh-inp-owner" placeholder="اسم المستخدم (مثال: SamAlkahli)" style="width: 100%; padding: 0.9rem; background: var(--bg); border: 1px solid var(--bdr); color: var(--tx); border-radius: var(--r); margin-bottom: 0.8rem; font-family: monospace;" dir="ltr">
+            
+            <input type="text" id="gh-inp-repo" placeholder="اسم المستودع (مثال: my-cv)" style="width: 100%; padding: 0.9rem; background: var(--bg); border: 1px solid var(--bdr); color: var(--tx); border-radius: var(--r); margin-bottom: 0.8rem; font-family: monospace;" dir="ltr">
+            
+            <input type="password" id="gh-inp-token" placeholder="المفتاح السري (ghp_...)" style="width: 100%; padding: 0.9rem; background: var(--bg); border: 1px solid var(--bdr); color: var(--tx); border-radius: var(--r); margin-bottom: 1.8rem; font-family: monospace;" dir="ltr">
+        </div>
+
+        <button id="btn-save-gh-alert" class="btn btn-p" style="width: 100%; justify-content: center; font-size: 1rem; padding: 0.8rem;"><i class='bx bx-check'></i> حفظ ومتابعة الرفع</button>
+        
+        <button id="btn-clear-gh-alert" class="btn btn-o" style="width: 100%; justify-content: center; border-color: #ff4d4d; color: #ff4d4d; margin-top: 0.8rem; display: none;"><i class='bx bx-trash'></i> مسح البيانات المسجلة</button>
+    </div>
+</div>
+`;
+document.body.insertAdjacentHTML('beforeend', ghModalHTML);
+
+// تعريف عناصر الـ Modal
+const ghAlert = document.getElementById('gh-custom-alert');
+const inpOwner = document.getElementById('gh-inp-owner');
+const inpRepo = document.getElementById('gh-inp-repo');
+const inpToken = document.getElementById('gh-inp-token');
+const btnSaveGh = document.getElementById('btn-save-gh-alert');
+const btnClearGh = document.getElementById('btn-clear-gh-alert');
+
+let pendingUpload = false; // متغير لمعرفة هل المستخدم ضغط حفظ التعديلات وكان يحتاج إدخال البيانات
+
+// دالة فتح النافذة
+function openGhModal(fromMainSaveBtn = false) {
+    pendingUpload = fromMainSaveBtn;
+    
+    // تعبئة البيانات إن وجدت
+    inpOwner.value = localStorage.getItem('gh_owner') || '';
+    inpRepo.value = localStorage.getItem('gh_repo') || '';
+    inpToken.value = localStorage.getItem('gh_token') || '';
+    
+    // إظهار زر المسح إذا كان مسجلاً مسبقاً
+    btnClearGh.style.display = localStorage.getItem('gh_token') ? 'flex' : 'none';
+    
+    ghAlert.style.display = 'flex';
+}
+
+// إغلاق النافذة
+document.getElementById('close-gh-alert').addEventListener('click', () => {
+    ghAlert.style.display = 'none';
+    pendingUpload = false;
+});
+
+// حفظ البيانات من داخل النافذة
+btnSaveGh.addEventListener('click', async () => {
+    const o = inpOwner.value.trim();
+    const r = inpRepo.value.trim();
+    const t = inpToken.value.trim();
+
+    if (!o || !r || !t) {
+        alert('الرجاء تعبئة جميع الحقول!');
+        return;
+    }
+
+    localStorage.setItem('gh_owner', o);
+    localStorage.setItem('gh_repo', r);
+    localStorage.setItem('gh_token', t);
+    
+    ghAlert.style.display = 'none';
+    showToast('✅ تم حفظ إعدادات GitHub');
+
+    // إذا كان المستخدم قادماً من زر "حفظ التعديلات" الرئيسي، نكمل الرفع تلقائياً
+    if (pendingUpload) {
+        const st = document.getElementById('save-status');
+        st.textContent = 'جاري الرفع...';
+        await saveToGitHub(S);
     }
 });
+
+// مسح البيانات
+btnClearGh.addEventListener('click', () => {
+    if(confirm('هل أنت متأكد من مسح بيانات اتصال GitHub؟')) {
+        localStorage.removeItem('gh_owner');
+        localStorage.removeItem('gh_repo');
+        localStorage.removeItem('gh_token');
+        ghAlert.style.display = 'none';
+        showToast('🗑️ تم مسح بيانات الاتصال.');
+    }
+});
+
+// زر الإعدادات اليدوي (يتم إضافته بجانب زر الحفظ الرئيسي برمجياً)
+setTimeout(() => {
+    const ghSettingsBtn = document.createElement('button');
+    ghSettingsBtn.className = 'btn btn-o';
+    ghSettingsBtn.innerHTML = '<i class="bx bxl-github"></i> إعدادات GitHub';
+    ghSettingsBtn.style.padding = '0.5rem';
+    ghSettingsBtn.style.fontSize = '0.8rem';
+    ghSettingsBtn.style.marginLeft = '10px';
+    ghSettingsBtn.style.borderColor = 'var(--tx2)';
+    ghSettingsBtn.style.color = 'var(--tx2)';
+    ghSettingsBtn.onclick = () => openGhModal(false);
+    
+    const saveBtn = document.getElementById('btn-save');
+    if(saveBtn) saveBtn.parentNode.insertBefore(ghSettingsBtn, saveBtn.nextSibling);
+}, 500);
+
+// دالة الرفع الأساسية لجيت هاب
+async function saveToGitHub(updatedData) {
+    const owner = localStorage.getItem('gh_owner');
+    const repo = localStorage.getItem('gh_repo');
+    const token = localStorage.getItem('gh_token');
+
+    const url = `https://api.github.com/repos/${owner}/${repo}/contents/defaults.js`;
+    
+    try {
+        const response = await fetch(url, { headers: { 'Authorization': `token ${token}` } });
+        if (!response.ok) {
+            if (response.status === 401 || response.status === 404) {
+                localStorage.removeItem('gh_token'); // مسح التوكن المضروب
+                throw new Error('البيانات غير صحيحة، أو لا يوجد مستودع بهذا الاسم!');
+            }
+            throw new Error('حدث خطأ في الاتصال مع جيت هاب.');
+        }
+        
+        const fileData = await response.json();
+        const fileContent = `const DEFAULTS = ${JSON.stringify(updatedData, null, 2)};`;
+        const base64Content = btoa(unescape(encodeURIComponent(fileContent)));
+
+        const updateResponse = await fetch(url, {
+            method: 'PUT',
+            headers: { 'Authorization': `token ${token}`, 'Content-Type': 'application/json' },
+            body: JSON.stringify({ message: 'تحديث بيانات السيرة الذاتية', content: base64Content, sha: fileData.sha })
+        });
+
+        if (updateResponse.ok) {
+            showToast('🚀 تم الرفع بنجاح! التحديثات ستظهر للجميع قريباً.');
+            document.getElementById('save-status').textContent = '✓ تم الرفع';
+        } else {
+            throw new Error('فشل التحديث.');
+        }
+    } catch (error) {
+        alert('خطأ الرفع: ' + error.message);
+        showToast('❌ فشل الرفع لجيت هاب');
+        document.getElementById('save-status').textContent = 'محفوظ محلياً فقط';
+    }
+}
+
+// ------------------------------------------
+// تعديل زر الحفظ الرئيسي في لوحة التحكم
+// ------------------------------------------
+document.getElementById('btn-save').addEventListener('click', async () => { 
+    collectState(); 
+    if(saveState(S)) {
+        const st = document.getElementById('save-status'); 
+        
+        // التحقق: هل أعدادات جيت هاب موجودة؟
+        if (localStorage.getItem('gh_token') && localStorage.getItem('gh_owner')) {
+            st.textContent = 'جاري الحفظ والرفع...'; 
+            st.className = 'save-status'; 
+            await saveToGitHub(S);
+            st.className = 'save-status ok'; 
+        } else {
+            // إذا لم تكن موجودة، نحفظ محلياً ونفتح النافذة المنبثقة
+            st.textContent = 'محفوظ محلياً (ينتظر الرفع)'; 
+            st.className = 'save-status ok';
+            showToast('تم الحفظ في جهازك، أكمل الإعدادات للرفع للموقع العام');
+            openGhModal(true); // فتح التنبيه وإخباره أننا أتينا من زر الحفظ
+        }
+        
+        setTimeout(() => { st.textContent = 'محفوظ'; st.className = 'save-status ok'; }, 3000); 
+    }
+});
+
 
 document.getElementById('btn-reset').addEventListener('click',()=>{ if(confirm('هل أنت متأكد من إعادة تعيين جميع البيانات؟')){ localStorage.removeItem(KEY); S=JSON.parse(JSON.stringify(DEFAULTS)); saveState(S); renderAdmin(); showToast('↺ تمت إعادة التعيين بنجاح'); } });
 
@@ -258,7 +426,6 @@ function showToast(msg){ const t=document.getElementById('toast'); t.textContent
 renderAdmin();
 document.getElementById('save-status').textContent=localStorage.getItem(KEY)?'محفوظ مسبقاً ✓':'افتراضي';
 if(localStorage.getItem(KEY)) document.getElementById('save-status').className='save-status ok';
-
 
 /* ====== ميزة الترجمة الآلية ====== */
 async function translateText(text) {
@@ -293,9 +460,8 @@ document.getElementById('btn-auto-translate').addEventListener('click', async ()
     showToast('⏳ جاري ترجمة كل المحتوى (بما فيه الإحصائيات والمهارات)...');
 
     try {
-        collectState(); // نجمع التعديلات الحالية قبل الترجمة
+        collectState(); 
         
-        // 1. ترجمة النصوص المستقلة
         S.en.name1 = await translateText(S.ar.name1);
         S.en.name2 = await translateText(S.ar.name2);
         S.en.badge = await translateText(S.ar.badge);
@@ -314,21 +480,18 @@ document.getElementById('btn-auto-translate').addEventListener('click', async ()
         S.en.eduTitle = await translateText(S.ar.eduTitle);
         S.en.ctTitle = await translateText(S.ar.ctTitle);
         
-        // 2. ترجمة كلمات التايبنج
         S.en.typing = await translateArray(S.ar.typing);
 
-        // 3. ترجمة الإحصائيات (الـ 4 خيارات اللي تحت عني)
         if(S.ar.stats) {
             S.en.stats = [];
             for (let stat of S.ar.stats) {
                 S.en.stats.push({
-                    n: await translateText(stat.n), // يترجم الرقم أو النص مثل "+3"
-                    l: await translateText(stat.l)  // يترجم المسمى
+                    n: await translateText(stat.n),
+                    l: await translateText(stat.l) 
                 });
             }
         }
         
-        // 4. ترجمة المشاريع
         if(S.ar.projects) {
             S.en.projects = [];
             for (let p of S.ar.projects) {
@@ -341,7 +504,6 @@ document.getElementById('btn-auto-translate').addEventListener('click', async ()
             }
         }
 
-        // 5. ترجمة الخبرات
         if(S.ar.experience) {
             S.en.experience = [];
             for (let e of S.ar.experience) {
@@ -354,19 +516,17 @@ document.getElementById('btn-auto-translate').addEventListener('click', async ()
             }
         }
 
-        // 6. ترجمة المهارات
         if(S.ar.skills) {
             S.en.skills = [];
             for (let sk of S.ar.skills) {
                 S.en.skills.push({
                     n: await translateText(sk.n),
-                    p: sk.p, // النسبة المئوية تبقى زي ما هي
-                    l: sk.l  // المستوى (Expert/Advanced) يبقى كما هو لأنه أساساً إنجليزي
+                    p: sk.p, 
+                    l: sk.l 
                 });
             }
         }
 
-        // 7. ترجمة التعليم
         if(S.ar.education) {
             S.en.education = [];
             for (let edu of S.ar.education) {
@@ -380,7 +540,7 @@ document.getElementById('btn-auto-translate').addEventListener('click', async ()
             }
         }
 
-        renderAdmin(); // نعكس البيانات المترجمة في اللوحة الإنجليزية
+        renderAdmin(); 
         showToast('✅ تمت الترجمة بالكامل بنجاح! راجع النصوص ثم اضغط حفظ');
     } catch (err) {
         showToast('❌ حدث خطأ، تأكد من الإنترنت');
@@ -388,45 +548,37 @@ document.getElementById('btn-auto-translate').addEventListener('click', async ()
         btn.innerHTML = originalText; btn.style.opacity = '1'; btn.disabled = false;
     }
 });
+
 /* ==========================================
-   ميزة نسخ كود البيانات (DEFAULTS) بنسخ إجباري
+   ميزة نسخ كود البيانات
    ========================================== */
 document.getElementById('btn-copy-code').addEventListener('click', () => {
-    // نجيب آخر بيانات محفوظة
     let cvData = localStorage.getItem('sam_cv_v2');
     if (!cvData) {
         showToast('⚠️ لا توجد بيانات محفوظة لنسخها! اضغط حفظ أولاً.');
         return;
     }
 
-    // نجهز الكود بتنسيق سليم 100%
     let jsCode = "const DEFAULTS = " + JSON.stringify(JSON.parse(cvData), null, 2) + ";";
 
-    // محاولة النسخ بالطريقة الحديثة
     if (navigator.clipboard && window.isSecureContext) {
         navigator.clipboard.writeText(jsCode).then(() => {
             showToast('✅ تم نسخ الكود كاملاً! الصقه الآن في ملفاتك.');
         }).catch(err => {
-            // إذا فشلت نستخدم الطريقة الاحتياطية (الإجبارية)
             fallbackCopyTextToClipboard(jsCode);
         });
     } else {
-        // إذا المتصفح ما يدعم، نستخدم الطريقة الاحتياطية
         fallbackCopyTextToClipboard(jsCode);
     }
 });
 
-// الطريقة الاحتياطية للنسخ (ممتازة للنصوص الضخمة جداً مثل صور Base64)
 function fallbackCopyTextToClipboard(text) {
     let textArea = document.createElement("textarea");
     textArea.value = text;
-    
-    // إخفاء المربع عشان ما يخرب شكل الصفحة
     textArea.style.top = "0";
     textArea.style.left = "0";
     textArea.style.position = "fixed";
     textArea.style.opacity = "0";
-    
     document.body.appendChild(textArea);
     textArea.focus();
     textArea.select();
@@ -434,7 +586,7 @@ function fallbackCopyTextToClipboard(text) {
     try {
         let successful = document.execCommand('copy');
         if (successful) {
-            showToast('✅ تم نسخ الكود كاملاً! الصقه الآن في ملفاتك.');
+            showToast('✅ تم نسخ الكود كاملاً!');
         } else {
             showToast('❌ فشل النسخ، حجم الصور كبير جداً.');
         }
@@ -443,18 +595,16 @@ function fallbackCopyTextToClipboard(text) {
     }
     document.body.removeChild(textArea);
 }
-/* ==========================================
-   ميزة حذف الصورة الشخصية
-   ========================================== */
+
 document.getElementById('btn-del-ar-pic').addEventListener('click', (e) => {
-    e.preventDefault(); // لمنع أي تحديث للصفحة
+    e.preventDefault(); 
     document.getElementById('ar-profile-pic').value = '';
     document.getElementById('ar-profile-file').value = '';
     showToast('🗑️ تم إزالة الصورة الشخصية العربية (لا تنسَ ضغط حفظ)');
 });
 
 document.getElementById('btn-del-en-pic').addEventListener('click', (e) => {
-    e.preventDefault(); // لمنع أي تحديث للصفحة
+    e.preventDefault(); 
     document.getElementById('en-profile-pic').value = '';
     document.getElementById('en-profile-file').value = '';
     showToast('🗑️ تم إزالة الصورة الشخصية الإنجليزية (لا تنسَ ضغط حفظ)');
