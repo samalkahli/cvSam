@@ -1,136 +1,176 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>سام اسكندر الكاهلي — Sam Iskandar Al-Kahli</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Tajawal:wght@300;400;700;900&family=Cormorant+Garamond:wght@300;400;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>سام اسكندر الكاهلي — Sam Iskandar Al-Kahli</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Tajawal:wght@300;400;700;900&family=Cormorant+Garamond:wght@300;400;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body lang="ar">
 
-<canvas id="stars"></canvas>
-<div id="color-panel" style="display:none;"></div>
+  <canvas id="stars"></canvas>
+  <div id="color-panel" style="display:none;"></div>
 
-<nav id="navbar">
-  <div class="nav-logo">SAM.AK</div>
-  <div class="nav-right">
-    <ul class="nav-links" id="nav-links">
-      <li><a href="#about" data-ar="عني" data-en="About">عني</a></li>
-      <li><a href="#projects" data-ar="المشاريع" data-en="Projects">المشاريع</a></li>
-      <li><a href="#experience" data-ar="الخبرات" data-en="Experience">الخبرات</a></li>
-      <li><a href="#skills" data-ar="المهارات" data-en="Skills">المهارات</a></li>
-      <li><a href="#education" data-ar="التعليم" data-en="Education">التعليم</a></li>
-      <li><a href="#contact" data-ar="التواصل" data-en="Contact">التواصل</a></li>
-    </ul>
-    <button class="lang-btn" id="lang-toggle">
-      <span class="lang-flag">🌐</span>
-      <span class="lang-active" id="lbl-ar">ع</span>
-      <span class="lang-divider">|</span>
-      <span class="lang-inactive" id="lbl-en">EN</span>
-    </button>
-  </div>
-</nav>
-
-<section id="hero">
-  <div class="hero-inner lang-fade">
-    <img id="pg-profile-pic" class="hero-profile-pic" src="" alt="Profile" style="display:none;">
-    <div class="hero-badge" id="pg-badge"></div>
-    <h1 class="hero-name">
-      <span id="pg-name1"></span><br>
-      <span class="gold" id="pg-name2"></span>
-    </h1>
-    <p class="hero-sub" id="pg-sub"><span id="typed-prefix"></span><span id="typed"></span><span class="blink">|</span></p>
-    <p class="hero-desc" id="pg-desc"></p>
-    <div class="hero-cta">
-      <a href="#contact" class="btn btn-p" id="pg-cta1"></a>
-      <a href="#projects" class="btn btn-o" id="pg-cta2"></a>
-      <button class="btn btn-o" id="btn-ats-download" style="border-color: var(--tx2); color: var(--tx2);">
-      <i class='bx bxs-file-pdf'></i> <span class="lang-ar" id="pg-ats-btn-ar">تحميل نسخة ATS</span><span class="lang-en" id="pg-ats-btn-en" style="display:none;">Download ATS</span>
+  <nav id="navbar">
+    <div class="nav-logo">SAM.AK</div>
+    <div class="nav-right">
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#about" data-ar="عني" data-en="About">عني</a></li>
+        <li><a href="#projects" data-ar="المشاريع" data-en="Projects">المشاريع</a></li>
+        <li><a href="#experience" data-ar="الخبرات" data-en="Experience">الخبرات</a></li>
+        <li><a href="#skills" data-ar="المهارات" data-en="Skills">المهارات</a></li>
+        <li><a href="#education" data-ar="التعليم" data-en="Education">التعليم</a></li>
+        <li><a href="#contact" data-ar="التواصل" data-en="Contact">التواصل</a></li>
+      </ul>
+      <button class="lang-btn" id="lang-toggle">
+        <span class="lang-flag">🌐</span>
+        <span class="lang-active" id="lbl-ar">عربي</span>
+        <span class="lang-divider">|</span>
+        <span class="lang-inactive" id="lbl-en">EN</span>
       </button>
     </div>
-  </div>
-  <div class="hero-scroll"><div class="scroll-line"></div><span id="pg-scroll"></span></div>
-</section>
+  </nav>
 
-<section id="about">
-  <div class="container">
-    <div class="sec-label"><span class="sec-num" id="lbl-about"></span><div class="sec-label-line"></div></div>
-    <div class="about-grid">
-      <div class="about-text reveal lang-fade">
-        <h2 class="sec-title" id="pg-about-title"></h2>
-        <p id="pg-about-p1"></p>
-        <p id="pg-about-p2"></p>
-      </div>
-      <div class="about-stats reveal" id="pg-stats"></div>
-    </div>
-  </div>
-</section>
-
-<section id="projects">
-  <div class="container">
-    <div class="sec-label"><span class="sec-num" id="lbl-pj"></span><div class="sec-label-line"></div></div>
-    <h2 class="sec-title lang-fade" id="pg-pj-title"></h2>
-    <div class="pj-grid lang-fade" id="pg-projects"></div>
-  </div>
-</section>
-
-<section id="experience">
-  <div class="container">
-    <div class="sec-label"><span class="sec-num" id="lbl-exp"></span><div class="sec-label-line"></div></div>
-    <h2 class="sec-title lang-fade" id="pg-exp-title"></h2>
-    <div class="timeline lang-fade" id="pg-exp"></div>
-  </div>
-</section>
-
-<section id="skills">
-  <div class="container">
-    <div class="sec-label"><span class="sec-num" id="lbl-sk"></span><div class="sec-label-line"></div></div>
-    <h2 class="sec-title lang-fade" id="pg-sk-title"></h2>
-    <div class="sk-grid lang-fade" id="pg-skills"></div>
-  </div>
-</section>
-
-<section id="education">
-  <div class="container">
-    <div class="sec-label"><span class="sec-num" id="lbl-edu"></span><div class="sec-label-line"></div></div>
-    <h2 class="sec-title lang-fade" id="pg-edu-title"></h2>
-    <div class="lang-fade" id="pg-edu"></div>
-  </div>
-</section>
-
-<section id="languages">
-  <div class="container">
-    <div class="sec-label"><span class="sec-num" id="lbl-lng"></span><div class="sec-label-line"></div></div>
-    <h2 class="sec-title lang-fade" id="pg-lng-title"></h2>
-    <div class="lng-grid lang-fade">
-      <div class="lng-c reveal">
-        <div class="lng-name" id="lng-ar-name"></div>
-        <div class="lng-lv" id="lng-ar-lv"></div>
-        <div class="lng-dots"><div class="lng-dot on"></div><div class="lng-dot on"></div><div class="lng-dot on"></div><div class="lng-dot on"></div><div class="lng-dot on"></div></div>
-      </div>
-      <div class="lng-c reveal">
-        <div class="lng-name">English</div>
-        <div class="lng-lv" id="lng-en-lv"></div>
-        <div class="lng-dots"><div class="lng-dot on"></div><div class="lng-dot on"></div><div class="lng-dot on"></div><div class="lng-dot on"></div><div class="lng-dot"></div></div>
+  <section id="hero">
+    <div class="hero-inner lang-fade">
+      <img id="pg-profile-pic" class="hero-profile-pic" src="" alt="Profile" style="display:none;">
+      <div class="hero-badge" id="pg-badge"></div>
+      <h1 class="hero-name">
+        <span id="pg-name1"></span><br>
+        <span class="gold" id="pg-name2"></span>
+      </h1>
+      <p class="hero-sub" id="pg-sub"><span id="typed-prefix"></span><span id="typed"></span><span
+          class="blink">|</span></p>
+      <p class="hero-desc" id="pg-desc"></p>
+      <div class="hero-cta">
+        <a href="#contact" class="btn btn-p" id="pg-cta1"></a>
+        <a href="#projects" class="btn btn-o" id="pg-cta2"></a>
+        <button class="btn btn-o" id="btn-ats-download" style="border-color: var(--tx2); color: var(--tx2);">
+          <i class='bx bxs-file-pdf'></i> <span class="lang-ar" id="pg-ats-btn-ar">تحميل نسخة ATS</span><span
+            class="lang-en" id="pg-ats-btn-en" style="display:none;">Download ATS</span>
+        </button>
       </div>
     </div>
-  </div>
-</section>
+    <div class="hero-scroll">
+      <div class="scroll-line"></div><span id="pg-scroll"></span>
+    </div>
+  </section>
 
-<section id="contact">
-  <div class="container">
-    <div class="sec-label"><span class="sec-num" id="lbl-ct"></span><div class="sec-label-line"></div></div>
-    <h2 class="sec-title lang-fade" id="pg-ct-title"></h2>
-    <div class="ct-grid lang-fade" id="pg-contact"></div>
-  </div>
-</section>
+  <section id="about">
+    <div class="container">
+      <div class="sec-label"><span class="sec-num" id="lbl-about"></span>
+        <div class="sec-label-line"></div>
+      </div>
+      <div class="about-grid">
+        <div class="about-text reveal lang-fade">
+          <h2 class="sec-title" id="pg-about-title"></h2>
+          <p id="pg-about-p1"></p>
+          <p id="pg-about-p2"></p>
+        </div>
+        <div class="stats-wrapper reveal">
+          <h3 class="stats-title" id="pg-stats-title"></h3>
+          <div class="about-stats" id="pg-stats"></div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<footer><p class="lang-fade" id="pg-footer"></p></footer>
-<script src="defaults.js"></script>
-<script src="script.js"></script>
+  <section id="projects">
+    <div class="container">
+      <div class="sec-label"><span class="sec-num" id="lbl-pj"></span>
+        <div class="sec-label-line"></div>
+      </div>
+      <h2 class="sec-title lang-fade" id="pg-pj-title"></h2>
+      <div class="pj-grid lang-fade" id="pg-projects"></div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="container">
+      <div class="sec-label"><span class="sec-num" id="lbl-exp"></span>
+        <div class="sec-label-line"></div>
+      </div>
+      <h2 class="sec-title lang-fade" id="pg-exp-title"></h2>
+      <div class="timeline lang-fade" id="pg-exp"></div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="container">
+      <div class="sec-label"><span class="sec-num" id="lbl-sk"></span>
+        <div class="sec-label-line"></div>
+      </div>
+      <h2 class="sec-title lang-fade" id="pg-sk-title"></h2>
+      <div class="sk-grid lang-fade" id="pg-skills"></div>
+    </div>
+  </section>
+
+  <section id="education">
+    <div class="container">
+      <div class="sec-label"><span class="sec-num" id="lbl-edu"></span>
+        <div class="sec-label-line"></div>
+      </div>
+      <h2 class="sec-title lang-fade" id="pg-edu-title"></h2>
+      <div class="lang-fade" id="pg-edu"></div>
+    </div>
+  </section>
+
+  <section id="languages">
+    <div class="container">
+      <div class="sec-label"><span class="sec-num" id="lbl-lng"></span>
+        <div class="sec-label-line"></div>
+      </div>
+      <h2 class="sec-title lang-fade" id="pg-lng-title"></h2>
+      <div class="lng-grid lang-fade">
+        <div class="lng-c reveal">
+          <div class="lng-name" id="lng-ar-name"></div>
+          <div class="lng-lv" id="lng-ar-lv"></div>
+          <div class="lng-dots">
+            <div class="lng-dot on"></div>
+            <div class="lng-dot on"></div>
+            <div class="lng-dot on"></div>
+            <div class="lng-dot on"></div>
+            <div class="lng-dot on"></div>
+          </div>
+        </div>
+        <div class="lng-c reveal">
+          <div class="lng-name">English</div>
+          <div class="lng-lv" id="lng-en-lv"></div>
+          <div class="lng-dots">
+            <div class="lng-dot on"></div>
+            <div class="lng-dot on"></div>
+            <div class="lng-dot on"></div>
+            <div class="lng-dot on"></div>
+            <div class="lng-dot"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container">
+      <div class="sec-label"><span class="sec-num" id="lbl-ct"></span>
+        <div class="sec-label-line"></div>
+      </div>
+      <h2 class="sec-title lang-fade" id="pg-ct-title"></h2>
+      <div class="ct-grid lang-fade" id="pg-contact"></div>
+    </div>
+  </section>
+
+  <footer>
+    <p class="lang-fade" id="pg-footer"></p>
+  </footer>
+  <script src="defaults.js"></script>
+  <script src="script.js"></script>
 </body>
+
 </html>
