@@ -213,7 +213,7 @@ const DEFAULTS = {
   },
   "en": {
     "name1": "Sam Iskander",
-    "name2": "alkahli",
+    "name2": "",
     "badge": "✦ Technology Solutions Developer & Store Operations Manager ✦",
     "subPrefix": "Specializes in",
     "typing": [
