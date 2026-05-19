@@ -91,12 +91,12 @@ body[lang="en"] .sec-title{font-family:var(--font-disp-en)}
 .about-text p{font-size:1rem;line-height:2.1;color:var(--tx2);margin-bottom:1.4rem}
 body[lang="en"] .about-text p{line-height:1.9}
 .about-stats{display:grid;grid-template-columns:1fr 1fr;gap:1.3rem}
-.stat-c{border:1px solid var(--bdr);padding:1.4rem;background:var(--sur);position:relative;overflow:hidden;transition:border-color .3s,transform .3s}
+.stat-c{border:1px solid var(--bdr);text-align: -webkit-center;padding:1.4rem;background:var(--sur);position:relative;overflow:hidden;transition:border-color .3s,transform .3s}
 .stat-c::before{content:'';position:absolute;top:0;right:0;width:3px;height:0;background:var(--gold);transition:height .5s}
 body[lang="en"] .stat-c::before{right:auto;left:0}
 .stat-c:hover{border-color:var(--gold-d);transform:translateY(-4px)}
 .stat-c:hover::before{height:100%}
-.stat-n{font-size:2.4rem;font-weight:900;color:var(--gold);line-height:1;font-family:var(--font-disp-en)}
+.stat-n{font-size:2rem;font-weight:900;color:var(--gold);line-height:1;font-family:var(--font-disp-en)}
 .stat-l{font-size:.82rem;color:var(--tx2);margin-top:.5rem}
 
 #experience{background:var(--bg)}
