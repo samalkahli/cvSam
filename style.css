@@ -246,3 +246,14 @@ body[lang="en"] .pj-features li::before { right: auto; left: 0; }
   .pj-img { height: 260px; padding:4px; } 
   .pj-info { padding: 1.5rem; } 
 }
+/* تنسيق عنوان الإحصائيات الجديد فوق المربعات */
+.stats-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--gold);
+  margin-bottom: 1.2rem;
+  font-family: var(--font-disp-ar);
+}
+body[lang="en"] .stats-title {
+  font-family: var(--font-disp-en);
+}

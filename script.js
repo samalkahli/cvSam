@@ -285,7 +285,7 @@ document.getElementById('btn-ats-download').addEventListener('click', function()
             </div>
             <h2>${D.aboutTitle}</h2>
             <div class="section-content"><p>${D.aboutP1}</p><p>${D.aboutP2}</p></div>
-            ${D.stats ? `<h2>${isAr ? 'إحصائيات سريعة' : 'Key Statistics'}</h2><div class="stats-box">${D.stats.map(s => `<div class="stat-item"><strong>${s.n}:</strong> ${s.l}</div>`).join('')}</div>` : ''}
+            ${D.stats ? `<h2>${D.statsTitle || (isAr ? 'إحصائيات سريعة' : 'Key Statistics')}</h2><div class="stats-box">${D.stats.map(s => `<div class="stat-item"><strong>${s.n}:</strong> ${s.l}</div>`).join('')}</div>` : ''}
             ${D.projects && D.projects.length > 0 ? `<h2>${D.pjTitle}</h2><div class="section-content">${D.projects.map(p => `<div class="item-header"><span>${p.title}</span></div><div class="sub-header">${p.link || ''}</div><p style="margin: 5px 0; font-size: 11pt;">${p.desc}</p><ul>${p.features ? p.features.split('\n').filter(f=>f.trim()).map(f => `<li>${f.replace(/<\/?[^>]+(>|$)/g, "")}</li>`).join('') : ''}</ul>`).join('')}</div>` : ''}
             <h2>${D.expTitle}</h2>
             <div class="section-content">${D.experience.map(e => `<div class="item-header"><span>${e.role}</span><span>${e.period}</span></div><div class="sub-header">${e.company}</div><ul>${e.points.map(p => `<li>${p.replace(/<\/?[^>]+(>|$)/g, "")}</li>`).join('')}</ul>`).join('')}</div>
