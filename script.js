@@ -240,7 +240,7 @@ document.addEventListener('mousemove',e=>{smx=e.clientX;smy=e.clientY});
   requestAnimationFrame(drawS);
 })(0);
 
-window.addEventListener('scroll',()=>{ document.getElementById('navbar').style.background = scrollY>50?'rgba(8,8,8,.96)':'rgba(8,8,8,.75)'; });
+window.addEventListener('scroll',()=>{ document.getElementById('navbar').style.background = scrollY>50?'color-mix(in srgb, var(--bg) 96%, transparent)':'color-mix(in srgb, var(--bg) 75%, transparent)'; });
 window.addEventListener('scroll',()=>{ const h=document.getElementById('hero'),sy=scrollY; if(sy<innerHeight){h.style.transform=`translateY(${sy*.22}px)`;h.style.opacity=1-sy/(innerHeight*.82);} });
 
 renderPage(LANG, false);

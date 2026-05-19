@@ -1,8 +1,13 @@
 :root {
   --gold:#C9A84C; --gold-l:#E8C97A; --gold-d:#7a6129;
   --bg:#080808; --bg2:#0e0e0e; --bg3:#141414;
-  --sur:rgba(255,255,255,.03); --sur2:rgba(201,168,76,.06);
-  --tx:#e8e0d0; --tx2:#8a8070; --bdr:rgba(201,168,76,.15);
+  --tx:#e8e0d0; --tx2:#8a8070;
+  
+  /* التعديل هنا: جعلناها ديناميكية تعتمد على المتغيرات الأساسية */
+  --sur: color-mix(in srgb, var(--tx) 3%, transparent);
+  --sur2: color-mix(in srgb, var(--gold) 6%, transparent);
+  --bdr: color-mix(in srgb, var(--gold) 15%, transparent);
+  
   --r:2px;
   --font-ar:'Cairo','Tajawal',sans-serif;
   --font-en:'DM Sans',sans-serif;
@@ -34,10 +39,12 @@ body[lang="en"] .lang-btn{font-family:var(--font-en)}
 .lang-active{color:var(--gold)}
 .lang-inactive{color:var(--tx2)}
 
-nav{
+nav {
   position:fixed;top:0;width:100%;z-index:200; padding:1.1rem 3rem;
   display:flex;align-items:center;justify-content:space-between;
-  background:rgba(8,8,8,.75);backdrop-filter:blur(24px); border-bottom:1px solid var(--bdr);transition:background .4s;
+  /* التعديل هنا: */
+  background: color-mix(in srgb, var(--bg) 75%, transparent);
+  backdrop-filter:blur(24px); border-bottom:1px solid var(--bdr);transition:background .4s;
 }
 .nav-logo{font-weight:900;font-size:1.05rem;letter-spacing:.12em;color:var(--gold);font-family:var(--font-disp-en)}
 .nav-right{display:flex;align-items:center;gap:2rem}
