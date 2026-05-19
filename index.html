@@ -12,6 +12,9 @@
     rel="stylesheet">
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <link rel="stylesheet" href="style.css">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
 </head>
 
 <body lang="ar">
@@ -169,8 +172,11 @@
   <footer>
     <p class="lang-fade" id="pg-footer"></p>
   </footer>
-  <script src="defaults.js"></script>
-  <script src="script.js"></script>
+  <script>
+    var randomNum = new Date().getTime();
+    document.write('<script src="defaults.js?v=' + randomNum + '"><\/script>');
+    document.write('<script src="script.js?v=' + randomNum + '"><\/script>');
+</script>
 </body>
 
 </html>
