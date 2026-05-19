@@ -212,7 +212,7 @@ const DEFAULTS = {
     "profilePic": ""
   },
   "en": {
-    "name1": "Sam Iskander",
+    "name1": "Sam ",
     "name2": "",
     "badge": "✦ Technology Solutions Developer & Store Operations Manager ✦",
     "subPrefix": "Specializes in",
