@@ -312,7 +312,7 @@ const DEFAULTS = {
         "l": ""
       },
       {
-        "n": "E-store management (basket-button-Shopify)",
+        "n": "E-store management (basket-z-shopify)",
         "p": 100,
         "l": ""
       },
@@ -423,13 +423,13 @@ const DEFAULTS = {
     "profilePic": ""
   },
   "colors": {
-    "gold": "#60a5fa",
-    "goldL": "#93c5fd",
-    "goldD": "#1e3a8a",
-    "bg": "#060b14",
-    "bg2": "#0b1221",
-    "tx": "#d0e4f7",
-    "tx2": "#607080"
+    "gold": "#C9A84C",
+    "goldL": "#E8C97A",
+    "goldD": "#7a6129",
+    "bg": "#080808",
+    "bg2": "#0e0e0e",
+    "tx": "#e8e0d0",
+    "tx2": "#8a8070"
   },
   "sections": {
     "about": true,
